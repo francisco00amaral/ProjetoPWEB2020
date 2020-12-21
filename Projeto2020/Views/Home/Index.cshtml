@@ -14,19 +14,23 @@
         <p>
             Ver os nossos veiculos e preçários!
         </p>
-        <input type="button" class="btn btn-info" value="Ver catálogo »" onclick="location.href='@Url.Action("Index", "Carros")'" />
+        <input type="button" class="btn btn-info" value="Ver catálogo »" onclick="location.href = '@Url.Action("Index", "Carros")'" />
     </div>
-    @if (!(User.Identity.IsAuthenticated)) { 
+    @if (!(User.Identity.IsAuthenticated))
+    {
         <div class="col-md-4">
             <h2>Registar como cliente</h2>
             <p>Para efetuar reservas!</p>
-            <input type="button" class="btn btn-info" value="Registar como cliente »" onclick="location.href='@Url.Action("Register", "Account")'" />
+            <input type="button" class="btn btn-info" value="Registar como cliente »" onclick="location.href='@Url.Action("Register", "Account", new { id = 1, usertype = 1 })'" />
         </div>
-    <div class="col-md-4">
-        <h2>Registar como empresa de Renting</h2>
-        <p>Pode registar aqui a sua empresa de renting!</p>
-        <input type="button" class="btn btn-info" value="Registar como empresa »" onclick="location.href='@Url.Action("Register", "Account")'" />
-    </div>
+    }
+    @if (!(User.Identity.IsAuthenticated) || User.IsInRole("Cliente"))
+    {
+        <div class="col-md-4">
+            <h2>Registar como empresa de Renting</h2>
+            <p>Pode registar aqui a sua empresa de renting!</p>
+            <input type="button" class="btn btn-info" value="Registar como empresa »" onclick="location.href = '@Url.Action("Register", "Account", new { id=2, usertype=2})'" />
+        </div>
     }
 </div>
 

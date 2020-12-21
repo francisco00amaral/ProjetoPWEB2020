@@ -152,7 +152,7 @@ namespace Projeto2020.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult Register(int id = 0, int tipouser = 0)
         {
             List<SelectListItem> list = new List<SelectListItem>();
             foreach (var role in RoleManager.Roles) 
@@ -163,6 +163,16 @@ namespace Projeto2020.Controllers
                     Value = role.Name,
                     Text = role.Name
                 });
+            }
+            if(id == 1)
+            {
+                ViewBag.Titulo = "Registar";
+                ViewBag.Mensagem = "Escolha a role de cliente";
+            }
+            if(id == 2)
+            {
+                ViewBag.Titulo = "Registar a sua empresa";
+                ViewBag.Mensagem = "Escolha a role de Empresa";
             }
             ViewBag.Roles = list;
             return View();

@@ -23,12 +23,12 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Catálogo", "Index", "Carros")</li>
-                   
+
                     @if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole("Cliente"))
                         {
-                        <li>@Html.ActionLink("Reservas", "Index", "Reservas")</li>
+                            <li>@Html.ActionLink("Reservas", "Index", "Reservas")</li>
                         }
                     }
 
