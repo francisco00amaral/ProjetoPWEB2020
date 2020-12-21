@@ -23,7 +23,12 @@ namespace Projeto2020.Models
         public ApplicationDbContext()
             : base("A_Minha_DB", throwIfV1Schema: false)
         {
+          
         }
+
+        // fazer aqui o dbset dos carros, estes vao ser os nomes gerados nas tabelas da bd
+        public DbSet<Carro> Carros { get; set; }
+        public DbSet<Reserva> Reservas { get; set; }
 
         public static ApplicationDbContext Create()
         {

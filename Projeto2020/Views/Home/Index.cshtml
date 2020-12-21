@@ -12,18 +12,50 @@
     <div class="col-md-4">
         <h2>Ver catálogo de produtos</h2>
         <p>
-            Ver os nossos veiculos e preçários, ou simplesmente registar-se!
+            Ver os nossos veiculos e preçários!
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Ver catalogo &raquo;</a></p>
+        <input type="button" class="btn btn-info" value="Ver catálogo »" onclick="location.href='@Url.Action("Index", "Carros")'" />
     </div>
-    <div class="col-md-4">
-        <h2>Registar como cliente</h2>
-        <p>Para efetuar reservas!</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Registar &raquo;</a></p>
-    </div>
+    @if (!(User.Identity.IsAuthenticated)) { 
+        <div class="col-md-4">
+            <h2>Registar como cliente</h2>
+            <p>Para efetuar reservas!</p>
+            <input type="button" class="btn btn-info" value="Registar como cliente »" onclick="location.href='@Url.Action("Register", "Account")'" />
+        </div>
     <div class="col-md-4">
         <h2>Registar como empresa de Renting</h2>
         <p>Pode registar aqui a sua empresa de renting!</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Registar empresa &raquo;</a></p>
+        <input type="button" class="btn btn-info" value="Registar como empresa »" onclick="location.href='@Url.Action("Register", "Account")'" />
     </div>
+    }
 </div>
+
+@*
+    <div class="about_us">
+        <h2>Sobre nós</h2>
+        <div class="foto_francisco">
+            <img src="~/assets/img/fotominha.jpg" style=";
+            float: left;
+            width: 200px;
+            height: 200px;
+            border-radius: 150px;
+            -webkit-border-radius: 150px;
+            -moz-border-radius: 150px;"
+                 alt="fotoxico" />
+        </div>
+        <div class="foto_miguel">
+            <img src="~/assets/img/fotomiguel.jpg" style="
+             float: right;
+            width: 200px;
+            height: 200px;
+            border-radius: 150px;
+            -webkit-border-radius: 150px;
+            -moz-border-radius: 150px;"
+            alt="fotomiguel" />
+        </div>
+        <div class="texto_centro">
+            <h3 style="color:#333;text-align:center;text-transform:uppercase">isto e um teste</h3>
+        </div>
+
+    </div>
+*@

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title -Viseu Car eRenting</title>
+    <title>@ViewBag.Title -Viseu Car Renting</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -22,8 +22,16 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Catálogo de produtos", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Catálogo", "Index", "Carros")</li>
+                   
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Cliente"))
+                        {
+                        <li>@Html.ActionLink("Reservas", "Index", "Reservas")</li>
+                        }
+                    }
+
 
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -32,6 +40,18 @@
                             <li>@Html.ActionLink("Utilizadores", "Index", "UsersAdmin")</li>
                             <li>@Html.ActionLink("Tipos de Utilizadores", "Index", "RolesAdmin")</li>
                         }
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Empresa"))
+                        {
+                            <li>@Html.ActionLink("Tipos de Utilizadores", "Index", "RolesAdmin")</li>
+                        }
+                    }
+                    @if (!(User.IsInRole("Admin")))
+                    {
+                        <li>@Html.ActionLink("Funcionários", "Index", "UsersAdmin")</li>
+                        <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -43,6 +63,7 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Viseu Car eRenting</p>
+            <p>Sobre nós</p>
 
             <center><p>Francisco Amaral - Miguel Fazenda</p></center>
         </footer>

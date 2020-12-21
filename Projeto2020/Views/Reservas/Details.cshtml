@@ -1,0 +1,42 @@
+﻿@model Projeto2020.Models.Reserva
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Reserva</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Carro.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carro.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataReserva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataReserva)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idReserva }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

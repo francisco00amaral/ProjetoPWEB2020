@@ -23,7 +23,7 @@ namespace Projeto2020
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap_hero.css",
                       "~/Content/site.css"));
         }
     }

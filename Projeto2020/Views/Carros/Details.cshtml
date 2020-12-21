@@ -1,0 +1,58 @@
+﻿@model Projeto2020.Models.Carro
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Carro</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Modelo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.preco)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.preco)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.km)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.km)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.deposito)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.deposito)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idCarro }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

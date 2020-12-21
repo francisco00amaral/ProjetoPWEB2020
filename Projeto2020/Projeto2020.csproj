@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -112,12 +118,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -169,16 +169,43 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CarrosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InitAdminController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReservasController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UsersAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012200119163_InitialCreate.cs" />
+    <Compile Include="Migrations\202012200119163_InitialCreate.Designer.cs">
+      <DependentUpon>202012200119163_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012210042187_Reservas.cs" />
+    <Compile Include="Migrations\202012210042187_Reservas.Designer.cs">
+      <DependentUpon>202012210042187_Reservas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012210046057_Reservas1.cs" />
+    <Compile Include="Migrations\202012210046057_Reservas1.Designer.cs">
+      <DependentUpon>202012210046057_Reservas1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012210056449_MarcasCarros.cs" />
+    <Compile Include="Migrations\202012210056449_MarcasCarros.Designer.cs">
+      <DependentUpon>202012210056449_MarcasCarros.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012210110034_addEmailReserva.cs" />
+    <Compile Include="Migrations\202012210110034_addEmailReserva.Designer.cs">
+      <DependentUpon>202012210110034_addEmailReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202012210137153_addDataReserva.cs" />
+    <Compile Include="Migrations\202012210137153_addDataReserva.Designer.cs">
+      <DependentUpon>202012210137153_addDataReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\Carros.cs" />
+    <Compile Include="Models\Carro.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Reserva.cs" />
@@ -190,10 +217,11 @@
     <Content Include="App_Data\A_Minha_DB_log.ldf">
       <DependentUpon>A_Minha_DB.mdf</DependentUpon>
     </Content>
+    <Content Include="assets\img\wallhaven-295557.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap_hero.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -259,8 +287,37 @@
     <Content Include="Views\InitAdmin\Success.cshtml" />
     <Content Include="Views\InitAdmin\Index.cshtml" />
     <Content Include="Views\InitAdmin\Error.cshtml" />
+    <Content Include="Views\Reservas\Create.cshtml" />
+    <Content Include="Views\Reservas\Delete.cshtml" />
+    <Content Include="Views\Reservas\Details.cshtml" />
+    <Content Include="Views\Reservas\Edit.cshtml" />
+    <Content Include="Views\Reservas\Index.cshtml" />
+    <Content Include="Views\Carros\Create.cshtml" />
+    <Content Include="Views\Carros\Delete.cshtml" />
+    <Content Include="Views\Carros\Details.cshtml" />
+    <Content Include="Views\Carros\Edit.cshtml" />
+    <Content Include="Views\Carros\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202012200119163_InitialCreate.resx">
+      <DependentUpon>202012200119163_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012210042187_Reservas.resx">
+      <DependentUpon>202012210042187_Reservas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012210046057_Reservas1.resx">
+      <DependentUpon>202012210046057_Reservas1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012210056449_MarcasCarros.resx">
+      <DependentUpon>202012210056449_MarcasCarros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012210110034_addEmailReserva.resx">
+      <DependentUpon>202012210110034_addEmailReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012210137153_addDataReserva.resx">
+      <DependentUpon>202012210137153_addDataReserva.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
