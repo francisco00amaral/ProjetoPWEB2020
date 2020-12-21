@@ -7,9 +7,14 @@
 <h2>Carros disponiveis para alugar</h2>
 
 <p>
-    @if (!(User.IsInRole("Cliente"))) { 
-    @Html.ActionLink("Adicionar um carro", "Create")
+    @if (User.Identity.IsAuthenticated)
+    {
+        if (!(User.IsInRole("Cliente")))
+        {
+            @Html.ActionLink("Adicionar um carro", "Create")
+        }
     }
+
 </p>
 <table class="table">
     <tr>
