@@ -60,8 +60,8 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.idCarro })
             }
 
-
-            @Html.ActionLink("Details", "Details", new { id = item.idCarro }) |
+            @Html.ActionLink("Alugar", "Details", new { id = item.idCarro }, new { @style = "color:green;" }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.idCarro }) |
 
         </td>
     </tr>
