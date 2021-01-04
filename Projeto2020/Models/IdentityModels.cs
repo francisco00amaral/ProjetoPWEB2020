@@ -30,6 +30,8 @@ namespace Projeto2020.Models
         public DbSet<Carro> Carros { get; set; }
         public DbSet<Reserva> Reservas { get; set; }
 
+        public DbSet<Empresa> Empresas { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

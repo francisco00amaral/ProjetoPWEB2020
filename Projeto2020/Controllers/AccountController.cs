@@ -16,6 +16,7 @@ namespace Projeto2020.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private ApplicationRoleManager _roleManager;
@@ -185,6 +186,7 @@ namespace Projeto2020.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
@@ -192,6 +194,17 @@ namespace Projeto2020.Controllers
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddToRoleAsync(user.Id, model.RoleName);
+                    if(model.RoleName == "Empresa")
+                    {
+                        Empresa empresa = new Empresa
+                        {
+                            nome = model.Email,
+                            UserId = user.Id,
+                        };
+                        db.Empresas.Add(empresa);
+                        db.SaveChanges();
+                    }
+                    // quando criar um funcionario apagar isto senao da login na conta;
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

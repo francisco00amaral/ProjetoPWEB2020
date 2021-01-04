@@ -203,9 +203,22 @@
     <Compile Include="Migrations\202012210137153_addDataReserva.Designer.cs">
       <DependentUpon>202012210137153_addDataReserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101041502528_Empresa.cs" />
+    <Compile Include="Migrations\202101041502528_Empresa.Designer.cs">
+      <DependentUpon>202101041502528_Empresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101041505225_Empresa1.cs" />
+    <Compile Include="Migrations\202101041505225_Empresa1.Designer.cs">
+      <DependentUpon>202101041505225_Empresa1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101041629166_Empresa2.cs" />
+    <Compile Include="Migrations\202101041629166_Empresa2.Designer.cs">
+      <DependentUpon>202101041629166_Empresa2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Carro.cs" />
+    <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Reserva.cs" />
@@ -316,6 +329,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012210137153_addDataReserva.resx">
       <DependentUpon>202012210137153_addDataReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101041502528_Empresa.resx">
+      <DependentUpon>202101041502528_Empresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101041505225_Empresa1.resx">
+      <DependentUpon>202101041505225_Empresa1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101041629166_Empresa2.resx">
+      <DependentUpon>202101041629166_Empresa2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
