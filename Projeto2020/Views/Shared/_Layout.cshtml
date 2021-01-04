@@ -23,6 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Catálogo", "Index", "Carros")</li>
+                    <li>@Html.ActionLink("Registar Funcionarios", "Contact", "Home")</li>
 
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -46,6 +47,7 @@
                         if (User.IsInRole("Empresa"))
                         {
                             <li>@Html.ActionLink("Tipos de Utilizadores", "Index", "RolesAdmin")</li>
+
                         }
                     }
                     @if (!(User.IsInRole("Admin")))

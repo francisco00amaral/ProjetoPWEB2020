@@ -12,10 +12,5 @@ namespace Projeto2020.Models
         [Key]
         public int idEmpresa { get; set; }
         public string nome { get; set; }
-
-        [ForeignKey("ApplicationUser")]
-
-        public string UserId { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
     }
 }   

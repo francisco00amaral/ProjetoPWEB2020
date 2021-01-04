@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Projeto2020.Models
 {
@@ -8,6 +9,10 @@ namespace Projeto2020.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [ForeignKey("Empresa")]
+        public int? idEmpresa { get; set;}
+        public Empresa Empresa { get; set; }
     }
 
     public class ExternalLoginListViewModel

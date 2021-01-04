@@ -153,7 +153,7 @@ namespace Projeto2020.Controllers
         //
         // GET: /Account/Register
         [AllowAnonymous]
-        public ActionResult Register(int id = 0, int tipouser = 0)
+        public ActionResult Register(int id = 0)
         {
             List<SelectListItem> list = new List<SelectListItem>();
             foreach (var role in RoleManager.Roles) 
@@ -196,10 +196,10 @@ namespace Projeto2020.Controllers
                     result = await UserManager.AddToRoleAsync(user.Id, model.RoleName);
                     if(model.RoleName == "Empresa")
                     {
+                        string username = model.Email.Substring(0, model.Email.IndexOf('@'));
                         Empresa empresa = new Empresa
                         {
-                            nome = model.Email,
-                            UserId = user.Id,
+                            nome = username,
                         };
                         db.Empresas.Add(empresa);
                         db.SaveChanges();
@@ -222,6 +222,42 @@ namespace Projeto2020.Controllers
             return View(model);
         }
 
+
+        // Registar Funcionarios!!
+        // GET: /Account/Register
+        [AllowAnonymous]
+        public ActionResult RegisterFuncionarios(int id = 0)
+        {
+            return View();
+        }
+
+        //
+        public async Task<ActionResult> RegisterFuncionarios(RegisterViewModel model)
+        {
+            string username = model.Email.Substring(0, model.Email.IndexOf('@')); // nome da empresa;
+            
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,idEmpresa = 500};
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    result = await UserManager.AddToRoleAsync(user.Id, "Funcionario");
+                    
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]

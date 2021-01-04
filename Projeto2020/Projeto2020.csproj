@@ -215,6 +215,18 @@
     <Compile Include="Migrations\202101041629166_Empresa2.Designer.cs">
       <DependentUpon>202101041629166_Empresa2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101041843194_AddEmpresaUser.cs" />
+    <Compile Include="Migrations\202101041843194_AddEmpresaUser.Designer.cs">
+      <DependentUpon>202101041843194_AddEmpresaUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101041846030_AddEmpresaUser1.cs" />
+    <Compile Include="Migrations\202101041846030_AddEmpresaUser1.Designer.cs">
+      <DependentUpon>202101041846030_AddEmpresaUser1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101041857529_AddEmpresaUser2.cs" />
+    <Compile Include="Migrations\202101041857529_AddEmpresaUser2.Designer.cs">
+      <DependentUpon>202101041857529_AddEmpresaUser2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Carro.cs" />
@@ -253,6 +265,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Home\Cena.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -339,6 +352,15 @@
     <EmbeddedResource Include="Migrations\202101041629166_Empresa2.resx">
       <DependentUpon>202101041629166_Empresa2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101041843194_AddEmpresaUser.resx">
+      <DependentUpon>202101041843194_AddEmpresaUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101041846030_AddEmpresaUser1.resx">
+      <DependentUpon>202101041846030_AddEmpresaUser1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101041857529_AddEmpresaUser2.resx">
+      <DependentUpon>202101041857529_AddEmpresaUser2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -353,6 +375,7 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
