@@ -23,7 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Catálogo", "Index", "Carros")</li>
-                    <li>@Html.ActionLink("Registar Funcionarios", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Registar Funcionarios", "RegisterFuncionarios", "Account")</li>
 
                     @if (User.Identity.IsAuthenticated)
                     {

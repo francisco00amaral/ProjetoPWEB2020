@@ -179,53 +179,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202012200119163_InitialCreate.cs" />
-    <Compile Include="Migrations\202012200119163_InitialCreate.Designer.cs">
-      <DependentUpon>202012200119163_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012210042187_Reservas.cs" />
-    <Compile Include="Migrations\202012210042187_Reservas.Designer.cs">
-      <DependentUpon>202012210042187_Reservas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012210046057_Reservas1.cs" />
-    <Compile Include="Migrations\202012210046057_Reservas1.Designer.cs">
-      <DependentUpon>202012210046057_Reservas1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012210056449_MarcasCarros.cs" />
-    <Compile Include="Migrations\202012210056449_MarcasCarros.Designer.cs">
-      <DependentUpon>202012210056449_MarcasCarros.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012210110034_addEmailReserva.cs" />
-    <Compile Include="Migrations\202012210110034_addEmailReserva.Designer.cs">
-      <DependentUpon>202012210110034_addEmailReserva.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202012210137153_addDataReserva.cs" />
-    <Compile Include="Migrations\202012210137153_addDataReserva.Designer.cs">
-      <DependentUpon>202012210137153_addDataReserva.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101041502528_Empresa.cs" />
-    <Compile Include="Migrations\202101041502528_Empresa.Designer.cs">
-      <DependentUpon>202101041502528_Empresa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101041505225_Empresa1.cs" />
-    <Compile Include="Migrations\202101041505225_Empresa1.Designer.cs">
-      <DependentUpon>202101041505225_Empresa1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101041629166_Empresa2.cs" />
-    <Compile Include="Migrations\202101041629166_Empresa2.Designer.cs">
-      <DependentUpon>202101041629166_Empresa2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101041843194_AddEmpresaUser.cs" />
-    <Compile Include="Migrations\202101041843194_AddEmpresaUser.Designer.cs">
-      <DependentUpon>202101041843194_AddEmpresaUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101041846030_AddEmpresaUser1.cs" />
-    <Compile Include="Migrations\202101041846030_AddEmpresaUser1.Designer.cs">
-      <DependentUpon>202101041846030_AddEmpresaUser1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101041857529_AddEmpresaUser2.cs" />
-    <Compile Include="Migrations\202101041857529_AddEmpresaUser2.Designer.cs">
-      <DependentUpon>202101041857529_AddEmpresaUser2.cs</DependentUpon>
+    <Compile Include="Migrations\202101042252593_Tudo.cs" />
+    <Compile Include="Migrations\202101042252593_Tudo.Designer.cs">
+      <DependentUpon>202101042252593_Tudo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -265,6 +221,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Account\RegisterFuncionarios.cshtml" />
     <Content Include="Views\Home\Cena.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -325,44 +282,6 @@
     <Content Include="Views\Carros\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202012200119163_InitialCreate.resx">
-      <DependentUpon>202012200119163_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012210042187_Reservas.resx">
-      <DependentUpon>202012210042187_Reservas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012210046057_Reservas1.resx">
-      <DependentUpon>202012210046057_Reservas1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012210056449_MarcasCarros.resx">
-      <DependentUpon>202012210056449_MarcasCarros.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012210110034_addEmailReserva.resx">
-      <DependentUpon>202012210110034_addEmailReserva.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202012210137153_addDataReserva.resx">
-      <DependentUpon>202012210137153_addDataReserva.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101041502528_Empresa.resx">
-      <DependentUpon>202101041502528_Empresa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101041505225_Empresa1.resx">
-      <DependentUpon>202101041505225_Empresa1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101041629166_Empresa2.resx">
-      <DependentUpon>202101041629166_Empresa2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101041843194_AddEmpresaUser.resx">
-      <DependentUpon>202101041843194_AddEmpresaUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101041846030_AddEmpresaUser1.resx">
-      <DependentUpon>202101041846030_AddEmpresaUser1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101041857529_AddEmpresaUser2.resx">
-      <DependentUpon>202101041857529_AddEmpresaUser2.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -375,7 +294,11 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202101042252593_Tudo.resx">
+      <DependentUpon>202101042252593_Tudo.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

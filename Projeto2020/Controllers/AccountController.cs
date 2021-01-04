@@ -189,21 +189,30 @@ namespace Projeto2020.Controllers
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                if(model.RoleName == "Empresa") {
+
+                   string username = model.Email.Substring(0, model.Email.IndexOf('@'));
+                    var empresa = new Empresa
+                    {
+                        nome = username,
+                    };
+                    db.Empresas.Add(empresa);
+                    db.SaveChanges();
+
+                    var id =
+                    (
+                    from l in db.Empresas
+                    where l.nome == username
+                    select l.idEmpresa
+                    ).FirstOrDefault();
+
+
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,idEmpresa = id };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddToRoleAsync(user.Id, model.RoleName);
-                    if(model.RoleName == "Empresa")
-                    {
-                        string username = model.Email.Substring(0, model.Email.IndexOf('@'));
-                        Empresa empresa = new Empresa
-                        {
-                            nome = username,
-                        };
-                        db.Empresas.Add(empresa);
-                        db.SaveChanges();
-                    }
+                    
                     // quando criar um funcionario apagar isto senao da login na conta;
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
@@ -217,6 +226,28 @@ namespace Projeto2020.Controllers
                 }
                 AddErrors(result);
             }
+                else
+                {
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                    var result = await UserManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        result = await UserManager.AddToRoleAsync(user.Id, model.RoleName);
+                        
+                        // quando criar um funcionario apagar isto senao da login na conta;
+                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                        // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                        // Send an email with this link
+                        // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                        // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                        // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                        return RedirectToAction("Index", "Home");
+                    }
+                    AddErrors(result);
+                }
+           }
 
             // If we got this far, something failed, redisplay form
             return View(model);
@@ -232,17 +263,26 @@ namespace Projeto2020.Controllers
         }
 
         //
+        // POST: /Account/RegisterFuncionarios
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterFuncionarios(RegisterViewModel model)
         {
             string username = model.Email.Substring(0, model.Email.IndexOf('@')); // nome da empresa;
+            string currentUserID = User.Identity.GetUserId();
+
+            var empresaId = (from l in db.Users 
+                            where l.Id == currentUserID
+                            select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
             
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,idEmpresa = 500};
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,idEmpresa = empresaId};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    result = await UserManager.AddToRoleAsync(user.Id, "Funcionario");
+                    result = await UserManager.AddToRoleAsync(user.Id, "Funcionário");
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
