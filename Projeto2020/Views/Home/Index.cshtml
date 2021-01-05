@@ -5,7 +5,7 @@
 <div class="jumbotron">
     <h1>Viseu Car eRenting</h1>
     <p class="lead">Viseu car eRenting is one of the first available options of renting cars in the district of Viseu, just one click away!</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Our catalog&raquo;</a></p>
+    <p><a href='@Url.Action("Index", "Carros")' class="btn btn-primary btn-lg">Our catalog&raquo;</a></p>
 </div>
 
 <div class="row">
@@ -30,6 +30,14 @@
             <h2>Registar como empresa de Renting</h2>
             <p>Pode registar aqui a sua empresa de renting!</p>
             <input type="button" class="btn btn-info" value="Registar como empresa »" onclick="location.href = '@Url.Action("Register", "Account", new { id=2})'" />
+        </div>
+    }
+    @if (User.IsInRole("Empresa"))
+    {
+        <div class="col-md-4">
+            <h2>Registe os seus funcionários</h2>
+            <p>Pode registar aqui os funcionários da sua empresa!</p>
+            <input type="button" class="btn btn-info" value="Registar como empresa »" onclick="location.href = '@Url.Action("RegisterFuncionarios", "Account", new { id=2})'" />
         </div>
     }
 </div>

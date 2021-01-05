@@ -23,38 +23,29 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Catálogo", "Index", "Carros")</li>
-                    <li>@Html.ActionLink("Registar Funcionarios", "RegisterFuncionarios", "Account")</li>
 
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Cliente"))
                     {
-                        if (User.IsInRole("Cliente"))
-                        {
-                            <li>@Html.ActionLink("Reservas", "Index", "Reservas")</li>
-                        }
+                        <li>@Html.ActionLink("Reservas", "Index", "Reservas")</li>
+
                     }
 
 
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        if (User.IsInRole("Admin"))
-                        {
-                            <li>@Html.ActionLink("Utilizadores", "Index", "UsersAdmin")</li>
-                            <li>@Html.ActionLink("Tipos de Utilizadores", "Index", "RolesAdmin")</li>
-                        }
-                    }
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        if (User.IsInRole("Empresa"))
-                        {
-                            <li>@Html.ActionLink("Tipos de Utilizadores", "Index", "RolesAdmin")</li>
 
-                        }
+                        <li>@Html.ActionLink("Utilizadores", "Index", "UsersAdmin")</li>
+                        <li>@Html.ActionLink("Tipos de Utilizadores", "Index", "RolesAdmin")</li>
                     }
-                    @if (!(User.IsInRole("Admin")))
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Empresa"))
                     {
-                        <li>@Html.ActionLink("Funcionários", "Index", "UsersAdmin")</li>
-                        <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
+                         <li>@Html.ActionLink("Os meus funcionarios", "DetalhesFunc", "Account")</li>
+                        <li>@Html.ActionLink("Registar Funcionarios", "RegisterFuncionarios", "Account")</li>
                     }
+
+
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

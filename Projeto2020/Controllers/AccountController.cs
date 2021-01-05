@@ -68,6 +68,23 @@ namespace Projeto2020.Controllers
             }
         }
 
+        [Authorize(Roles ="Empresa")]
+        public ActionResult DetalhesFunc()
+        {
+            var currentUserID = User.Identity.GetUserId();
+
+            var empresaId = (from l in db.Users
+                             where l.Id == currentUserID
+                             select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
+
+
+            var funcionarios = db.Users.Where(p => p.idEmpresa == empresaId);
+            
+            //var reservas = db.Reservas.Include(r => r.Carro).Where(i => i.email == User.Identity.Name); // o where ..garante que so mostra as reservas desse user, nao mostra mais nenhumas
+            // return View(reservas.ToList());
+            return View(funcionarios.ToList());
+        }
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -256,7 +273,7 @@ namespace Projeto2020.Controllers
 
         // Registar Funcionarios!!
         // GET: /Account/Register
-        [AllowAnonymous]
+        [Authorize(Roles = "Empresa")]
         public ActionResult RegisterFuncionarios(int id = 0)
         {
             return View();
@@ -265,7 +282,7 @@ namespace Projeto2020.Controllers
         //
         // POST: /Account/RegisterFuncionarios
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Empresa")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RegisterFuncionarios(RegisterViewModel model)
         {
