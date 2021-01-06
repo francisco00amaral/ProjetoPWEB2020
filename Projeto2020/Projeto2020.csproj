@@ -170,6 +170,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarrosController.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InitAdminController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -183,9 +184,18 @@
     <Compile Include="Migrations\202101042252593_Tudo.Designer.cs">
       <DependentUpon>202101042252593_Tudo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101060044543_Categoria.cs" />
+    <Compile Include="Migrations\202101060044543_Categoria.Designer.cs">
+      <DependentUpon>202101060044543_Categoria.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101060050085_CarroComCategoria.cs" />
+    <Compile Include="Migrations\202101060050085_CarroComCategoria.Designer.cs">
+      <DependentUpon>202101060050085_CarroComCategoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Carro.cs" />
+    <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -272,12 +282,18 @@
     <Content Include="Views\Reservas\Details.cshtml" />
     <Content Include="Views\Reservas\Edit.cshtml" />
     <Content Include="Views\Reservas\Index.cshtml" />
+    <Content Include="Views\Account\DetalhesFunc.cshtml" />
+    <Content Include="Views\Home\adminarea.cshtml" />
+    <Content Include="Views\Categorias\Create.cshtml" />
+    <Content Include="Views\Categorias\Delete.cshtml" />
+    <Content Include="Views\Categorias\Details.cshtml" />
+    <Content Include="Views\Categorias\Edit.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
     <Content Include="Views\Carros\Create.cshtml" />
     <Content Include="Views\Carros\Delete.cshtml" />
     <Content Include="Views\Carros\Details.cshtml" />
     <Content Include="Views\Carros\Edit.cshtml" />
     <Content Include="Views\Carros\Index.cshtml" />
-    <Content Include="Views\Account\DetalhesFunc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -295,6 +311,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202101042252593_Tudo.resx">
       <DependentUpon>202101042252593_Tudo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101060044543_Categoria.resx">
+      <DependentUpon>202101060044543_Categoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101060050085_CarroComCategoria.resx">
+      <DependentUpon>202101060050085_CarroComCategoria.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,112 +10,107 @@ using Projeto2020.Models;
 
 namespace Projeto2020.Controllers
 {
-    public class CarrosController : Controller
+    public class CategoriasController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Carros
+        // GET: Categorias
         public ActionResult Index()
         {
-            var carros = db.Carros.Include(c => c.Categoria);
-            return View(carros.ToList());
+            return View(db.Categorias.ToList());
         }
 
-        // GET: Carros/Details/5
+        // GET: Categorias/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carro carro = db.Carros.Find(id);
-            if (carro == null)
+            Categoria categoria = db.Categorias.Find(id);
+            if (categoria == null)
             {
                 return HttpNotFound();
             }
-            return View(carro);
+            return View(categoria);
         }
 
-        // GET: Carros/Create
+        // GET: Categorias/Create
         public ActionResult Create()
         {
-            ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome");
             return View();
         }
 
-        // POST: Carros/Create
+        // POST: Categorias/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCarro,Marca,Modelo,preco,km,deposito,idCategoria")] Carro carro)
+        public ActionResult Create([Bind(Include = "idCategoria,nome")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {
-                db.Carros.Add(carro);
+                db.Categorias.Add(categoria);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome", carro.idCategoria);
-            return View(carro);
+            return View(categoria);
         }
 
-        // GET: Carros/Edit/5
+        // GET: Categorias/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carro carro = db.Carros.Find(id);
-            if (carro == null)
+            Categoria categoria = db.Categorias.Find(id);
+            if (categoria == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome", carro.idCategoria);
-            return View(carro);
+            return View(categoria);
         }
 
-        // POST: Carros/Edit/5
+        // POST: Categorias/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idCarro,Marca,Modelo,preco,km,deposito,idCategoria")] Carro carro)
+        public ActionResult Edit([Bind(Include = "idCategoria,nome")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(carro).State = EntityState.Modified;
+                db.Entry(categoria).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome", carro.idCategoria);
-            return View(carro);
+            return View(categoria);
         }
 
-        // GET: Carros/Delete/5
+        // GET: Categorias/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carro carro = db.Carros.Find(id);
-            if (carro == null)
+            Categoria categoria = db.Categorias.Find(id);
+            if (categoria == null)
             {
                 return HttpNotFound();
             }
-            return View(carro);
+            return View(categoria);
         }
 
-        // POST: Carros/Delete/5
+        // POST: Categorias/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Carro carro = db.Carros.Find(id);
-            db.Carros.Remove(carro);
+            Categoria categoria = db.Categorias.Find(id);
+            db.Categorias.Remove(categoria);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

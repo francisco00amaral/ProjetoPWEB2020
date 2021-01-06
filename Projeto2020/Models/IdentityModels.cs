@@ -36,6 +36,7 @@ namespace Projeto2020.Models
 
         public DbSet<Empresa> Empresas { get; set; }
 
+        public DbSet<Categoria> Categorias { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

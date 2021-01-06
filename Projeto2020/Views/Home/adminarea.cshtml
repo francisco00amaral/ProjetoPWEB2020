@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Area de administraçao";
+}
+
+<h1 style="font-size:30px;color:#3b3ff9">Administration area</h1>
+
+<div class="jumbotron">
+    <h1>Gerir clientes</h1>
+    <p class="lead">Aqui pode listar,ou editar ou visualizar clientes</p>
+    <span style="float:inherit"><a href='@Url.Action("Index", "UsersAdmin",new { id = 1 })' class="btn btn-primary btn-lg">Clientes&raquo;</a></span>
+</div>
+
+<div class="jumbotron">
+    <h1>Gerir as empresas de renting</h1>
+    <p class="lead">Aqui pode listar,ou editar ou visualizar empresas de renting</p>
+    <span style="float:inherit"><a href='@Url.Action("Index", "UsersAdmin",new { id = 2 })' class="btn btn-primary btn-lg">Empresas&raquo;</a></span>
+</div>
+

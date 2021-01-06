@@ -13,6 +13,7 @@ namespace Projeto2020
     public class UsersAdminController : Controller
     {
         ApplicationDbContext context;
+        private ApplicationDbContext db = new ApplicationDbContext();
         public UsersAdminController()
         {
             context = new ApplicationDbContext();
@@ -52,8 +53,18 @@ namespace Projeto2020
 
         //
         // GET: /Users/
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(int tipo=0)
         {
+            // CLIENTES
+            if(tipo == 1)
+            {
+                var cliente = db.Users.Where(i => i.Empresa == null);
+                return View(cliente.ToListAsync());
+            }
+            // LISTA EMPRESAS;
+            if (tipo == 2)
+            {
+            }
             return View(await UserManager.Users.ToListAsync());
         }
 

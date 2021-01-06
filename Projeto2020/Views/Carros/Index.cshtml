@@ -1,23 +1,19 @@
 ﻿@model IEnumerable<Projeto2020.Models.Carro>
 
 @{
-    ViewBag.Title = "Os nossos carros";
+    ViewBag.Title = "Index";
 }
 
-<h2>Carros disponiveis para alugar</h2>
+<h2>Index</h2>
 
 <p>
-    @if (User.Identity.IsAuthenticated)
-    {
-        if (!(User.IsInRole("Cliente")))
-        {
-            @Html.ActionLink("Adicionar um carro", "Create")
-        }
-    }
-
+    @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria.nome)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Marca)
         </th>
@@ -39,6 +35,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Categoria.nome)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Marca)
         </td>
         <td>
@@ -54,15 +53,9 @@
             @Html.DisplayFor(modelItem => item.deposito)
         </td>
         <td>
-            @if (User.IsInRole("Empresa"))
-            {
-                @Html.ActionLink("Edit", "Edit", new { id = item.idCarro })
-                @Html.ActionLink("Delete", "Delete", new { id = item.idCarro })
-            }
-
-            @Html.ActionLink("Alugar", "Details", new { id = item.idCarro }, new { @style = "color:green;" }) |
-            @Html.ActionLink("Detalhes", "Details", new { id = item.idCarro }) |
-
+            @Html.ActionLink("Edit", "Edit", new { id=item.idCarro }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idCarro }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idCarro })
         </td>
     </tr>
 }
