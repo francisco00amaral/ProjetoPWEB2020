@@ -13,5 +13,6 @@ namespace Projeto2020.Models
         public int idEmpresa { get; set; }
         public string nome { get; set; }
 
+        public List<CheckboxListItem> verificacoes { get; set; }
     }
 }   

@@ -17,7 +17,7 @@ namespace Projeto2020.Controllers
         // GET: Carros
         public ActionResult Index()
         {
-            var carros = db.Carros.Include(c => c.Categoria);
+            var carros = db.Carros.Include(c => c.Categoria).Include(c => c.Empresa);
             return View(carros.ToList());
         }
 
@@ -40,6 +40,7 @@ namespace Projeto2020.Controllers
         public ActionResult Create()
         {
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome");
+            ViewBag.idEmpresa = new SelectList(db.Empresas, "idEmpresa", "nome");
             return View();
         }
 
@@ -48,7 +49,7 @@ namespace Projeto2020.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCarro,Marca,Modelo,preco,km,deposito,idCategoria")] Carro carro)
+        public ActionResult Create([Bind(Include = "idCarro,Marca,Modelo,preco,km,deposito,idCategoria,idEmpresa")] Carro carro)
         {
             if (ModelState.IsValid)
             {
@@ -58,6 +59,7 @@ namespace Projeto2020.Controllers
             }
 
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome", carro.idCategoria);
+            ViewBag.idEmpresa = new SelectList(db.Empresas, "idEmpresa", "nome", carro.idEmpresa);
             return View(carro);
         }
 
@@ -74,6 +76,7 @@ namespace Projeto2020.Controllers
                 return HttpNotFound();
             }
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome", carro.idCategoria);
+            ViewBag.idEmpresa = new SelectList(db.Empresas, "idEmpresa", "nome", carro.idEmpresa);
             return View(carro);
         }
 
@@ -82,7 +85,7 @@ namespace Projeto2020.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idCarro,Marca,Modelo,preco,km,deposito,idCategoria")] Carro carro)
+        public ActionResult Edit([Bind(Include = "idCarro,Marca,Modelo,preco,km,deposito,idCategoria,idEmpresa")] Carro carro)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +94,7 @@ namespace Projeto2020.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome", carro.idCategoria);
+            ViewBag.idEmpresa = new SelectList(db.Empresas, "idEmpresa", "nome", carro.idEmpresa);
             return View(carro);
         }
 

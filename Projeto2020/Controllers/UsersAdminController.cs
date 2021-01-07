@@ -53,17 +53,21 @@ namespace Projeto2020
 
         //
         // GET: /Users/
-        public async Task<ActionResult> Index(int tipo=0)
+        public async Task<ActionResult> Index(int id=0)
         {
             // CLIENTES
-            if(tipo == 1)
+            if(id == 1)
             {
-                var cliente = db.Users.Where(i => i.Empresa == null);
-                return View(cliente.ToListAsync());
+                var cliente = UserManager.Users.Where(i => i.Empresa == null);
+                ViewBag.Titulo = "Lista de admins e clientes do site";
+                return View(await cliente.ToListAsync());
             }
             // LISTA EMPRESAS;
-            if (tipo == 2)
+            if (id == 2)
             {
+                var cliente = UserManager.Users.Where(i => i.Empresa != null);
+                ViewBag.Titulo = "Lista de empresas e funcionarios do site";
+                return View(await cliente.ToListAsync());
             }
             return View(await UserManager.Users.ToListAsync());
         }
@@ -196,6 +200,7 @@ namespace Projeto2020
                 return RedirectToAction("Index");
             }
             ModelState.AddModelError("", "Something failed.");
+            
             return View();
         }
 

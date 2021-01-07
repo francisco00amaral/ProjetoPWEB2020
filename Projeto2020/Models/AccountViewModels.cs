@@ -12,7 +12,7 @@ namespace Projeto2020.Models
 
         [ForeignKey("Empresa")]
         public int? idEmpresa { get; set;}
-        public Empresa Empresa { get; set; }
+        public virtual Empresa Empresa { get; set; }
     }
 
     public class ExternalLoginListViewModel
