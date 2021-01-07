@@ -31,13 +31,11 @@ namespace Projeto2020.Models
         }
 
         // fazer aqui o dbset dos carros, estes vao ser os nomes gerados nas tabelas da bd
-
-        public DbSet<Reserva> Reservas { get; set; }
-        public DbSet<Carro> Carros { get; set; }
-        public DbSet<Empresa> Empresas { get; set; }
-        public DbSet<Categoria> Categorias { get; set; }
-
-        public DbSet<CheckboxListItem> CheckboxListItems { get; set; }
+        public virtual DbSet<Carro> Carros { get; set; }
+        public virtual DbSet<Empresa> Empresas { get; set; }
+        public virtual DbSet<Categoria> Categorias { get; set; }
+        public virtual DbSet<Reserva> Reservas { get; set; }
+        public virtual DbSet<CheckboxListItem> CheckboxListItems { get; set; }
 
         public static ApplicationDbContext Create()
         {

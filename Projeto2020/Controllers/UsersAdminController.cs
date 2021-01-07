@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Projeto2020
 {
-    [Authorize(Roles = "Admin")]
+    
     public class UsersAdminController : Controller
     {
         ApplicationDbContext context;
@@ -62,7 +62,7 @@ namespace Projeto2020
                 ViewBag.Titulo = "Lista de admins e clientes do site";
                 return View(await cliente.ToListAsync());
             }
-            // LISTA EMPRESAS;
+            // LISTA EMPRESAS E FUNCIONARIOS;
             if (id == 2)
             {
                 var cliente = UserManager.Users.Where(i => i.Empresa != null);
@@ -239,6 +239,51 @@ namespace Projeto2020
                     return HttpNotFound();
                 }
                 var result = await UserManager.DeleteAsync(user);
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        // GET: /Users/Suspend/5
+        public async Task<ActionResult> Suspend(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = await UserManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        //
+        // POST: /Users/Suspend/5
+        [HttpPost, ActionName("Suspend")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SuspendConfirmed(string id)
+        {
+            if (ModelState.IsValid)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+    
+                var user = await UserManager.FindByIdAsync(id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+                // mudar isto para este e apartir daqui acho que consigo dar lockout ao user, depois é só fazer a verificaçao no post do login, if(userid ou a empresa q ta associada ta lockout n entra)
+                //var result = await UserManager.SetLockoutEnabledAsync(user.ToString(),true);
+               var result = await UserManager.DeleteAsync(user);
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError("", result.Errors.First());

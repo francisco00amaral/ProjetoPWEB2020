@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Projeto2020
 {
-    [Authorize(Roles = "Admin")]
+    
     public class InitAdminController : Controller
     {        
         public ApplicationDbContext db;

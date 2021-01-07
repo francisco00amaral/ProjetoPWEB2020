@@ -1,12 +1,12 @@
 ﻿@model Projeto2020.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Register Funcionario";
+    ViewBag.Title = "Register membro da administração da empresa";
 }
 
-<h2>Registe o seu funcionário</h2>
+<h2>Registe o seu novo membro da administração da empresa</h2>
 
 
-@using (Html.BeginForm("RegisterFuncionarios", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("RegisterEmpresa", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 

@@ -17,8 +17,23 @@ namespace Projeto2020.Migrations
                         preco = c.Single(nullable: false),
                         km = c.Int(nullable: false),
                         deposito = c.Int(nullable: false),
+                        idCategoria = c.Int(nullable: false),
+                        idEmpresa = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.idCarro);
+                .PrimaryKey(t => t.idCarro)
+                .ForeignKey("dbo.Categorias", t => t.idCategoria, cascadeDelete: true)
+                .ForeignKey("dbo.Empresas", t => t.idEmpresa, cascadeDelete: true)
+                .Index(t => t.idCategoria)
+                .Index(t => t.idEmpresa);
+            
+            CreateTable(
+                "dbo.Categorias",
+                c => new
+                    {
+                        idCategoria = c.Int(nullable: false, identity: true),
+                        nome = c.String(),
+                    })
+                .PrimaryKey(t => t.idCategoria);
             
             CreateTable(
                 "dbo.Empresas",
@@ -30,17 +45,17 @@ namespace Projeto2020.Migrations
                 .PrimaryKey(t => t.idEmpresa);
             
             CreateTable(
-                "dbo.Reservas",
+                "dbo.CheckboxListItems",
                 c => new
                     {
-                        idReserva = c.Int(nullable: false, identity: true),
-                        idCarro = c.Int(nullable: false),
-                        email = c.String(),
-                        DataReserva = c.DateTime(nullable: false),
+                        ID = c.Int(nullable: false, identity: true),
+                        Display = c.String(),
+                        IsChecked = c.Boolean(nullable: false),
+                        Empresa_idEmpresa = c.Int(),
                     })
-                .PrimaryKey(t => t.idReserva)
-                .ForeignKey("dbo.Carroes", t => t.idCarro, cascadeDelete: true)
-                .Index(t => t.idCarro);
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Empresas", t => t.Empresa_idEmpresa)
+                .Index(t => t.Empresa_idEmpresa);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -122,7 +137,9 @@ namespace Projeto2020.Migrations
             DropForeignKey("dbo.AspNetUsers", "idEmpresa", "dbo.Empresas");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Reservas", "idCarro", "dbo.Carroes");
+            DropForeignKey("dbo.Carroes", "idEmpresa", "dbo.Empresas");
+            DropForeignKey("dbo.CheckboxListItems", "Empresa_idEmpresa", "dbo.Empresas");
+            DropForeignKey("dbo.Carroes", "idCategoria", "dbo.Categorias");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
@@ -130,14 +147,17 @@ namespace Projeto2020.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Reservas", new[] { "idCarro" });
+            DropIndex("dbo.CheckboxListItems", new[] { "Empresa_idEmpresa" });
+            DropIndex("dbo.Carroes", new[] { "idEmpresa" });
+            DropIndex("dbo.Carroes", new[] { "idCategoria" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.Reservas");
+            DropTable("dbo.CheckboxListItems");
             DropTable("dbo.Empresas");
+            DropTable("dbo.Categorias");
             DropTable("dbo.Carroes");
         }
     }

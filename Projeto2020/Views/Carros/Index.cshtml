@@ -1,21 +1,18 @@
 ﻿@model IEnumerable<Projeto2020.Models.Carro>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Catálogo de carros";
 }
 
-<h2>Index</h2>
+<h2>Catálogo de carros</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Categoria.nome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Empresa.nome)
+            <div>Nome da empresa</div>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Marca)

@@ -4,10 +4,14 @@
     ViewBag.Title = "List of users";
 }
 
-<h2>Os meus funcionarios</h2>
+<h2>Os meus funcionarios </h2>
 
 <p>
     @Html.ActionLink("Registar novo funcionario", "RegisterFuncionarios")
+
+</p>
+<p>
+    @Html.ActionLink("Registar novo membro da administração da empresa", "RegisterEmpresa")
 </p>
 <table class="table">
     <tr>
@@ -26,9 +30,9 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @style = "color:green;" }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @style = "color:red;" })
+                @Html.ActionLink("Edit", "Edit", "UsersAdmin", new { id = item.Id }, new { @style = "color:green;" }) |
+                @Html.ActionLink("Details", "Details", "UsersAdmin", new { id = item.Id }, new { @style = "color:black;" }) |
+                @Html.ActionLink("Delete", "Delete", "UsersAdmin", new { id = item.Id }, new { @style = "color:red;" })
             </td>
         </tr>
     }

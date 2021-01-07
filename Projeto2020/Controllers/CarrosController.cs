@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using Microsoft.AspNet.Identity;
 using System.Web.Mvc;
 using Projeto2020.Models;
 
@@ -18,6 +19,18 @@ namespace Projeto2020.Controllers
         public ActionResult Index()
         {
             var carros = db.Carros.Include(c => c.Categoria).Include(c => c.Empresa);
+            return View(carros.ToList());
+        }
+
+        [Authorize(Roles ="Empresa")]
+        public ActionResult IndexEmpresa()
+        {
+            string currentUserID = User.Identity.GetUserId();
+            var empresaId = (from l in db.Users
+                             where l.Id == currentUserID
+                             select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
+            //var carros = db.Carros.Where(c=> c.idEmpresa == empresaId).Include(c => c.Categoria).Include(c => c.idEmpresa);
+            var carros = db.Carros.Where(u => u.idEmpresa == empresaId);
             return View(carros.ToList());
         }
 
@@ -36,6 +49,7 @@ namespace Projeto2020.Controllers
             return View(carro);
         }
 
+        [Authorize(Roles = "Empresa")]
         // GET: Carros/Create
         public ActionResult Create()
         {
@@ -49,12 +63,16 @@ namespace Projeto2020.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCarro,Marca,Modelo,preco,km,deposito,idCategoria,idEmpresa")] Carro carro)
-        {
+        public ActionResult Create([Bind(Include = "idCarro,Marca,Modelo,preco,km,deposito,idCategoria,idEmpresa")] Carro carro,int id = 0)
+        {   
             if (ModelState.IsValid)
             {
                 db.Carros.Add(carro);
                 db.SaveChanges();
+                if(id == 1)
+                {
+                    return RedirectToAction("IndexEmpresa");
+                }
                 return RedirectToAction("Index");
             }
 

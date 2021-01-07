@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Projeto2020.Models.Reserva>
+
+@{
+    
+    ViewBag.Title = "Os meus veiculos";
+}
+
+<h2>Index</h2>
+
+<p>
+   
+    @Html.ActionLink("Adicionar novo veiculo", "Create", new { id = 1 })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idCarro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isEntregue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idCarro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isEntregue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.idCarro }) |
+                @Html.ActionLink("Details", "Details", new { id = item.idCarro }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.idCarro })
+            </td>
+        </tr>
+    }
+
+</table>

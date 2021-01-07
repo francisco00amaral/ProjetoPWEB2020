@@ -11,8 +11,11 @@ namespace Projeto2020.Models
     {
         [Key]
         public int idEmpresa { get; set; }
+
+        [Display(Name = "Empresa")]
         public string nome { get; set; }
 
-        public List<CheckboxListItem> verificacoes { get; set; }
+        //cada empresa tem uma lista de verificacoes diferentes
+        public List<CheckboxListItem> Verificacoes { get; set; }
     }
 }   

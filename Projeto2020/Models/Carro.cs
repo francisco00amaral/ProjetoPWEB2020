@@ -30,6 +30,7 @@ namespace Projeto2020.Models
 
         // 1 carro tem 1 empresa associada
         [ForeignKey("Empresa")]
+
         public int idEmpresa { get; set; }
         public virtual Empresa Empresa { get; set; }
     }

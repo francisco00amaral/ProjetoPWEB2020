@@ -7,13 +7,13 @@ namespace Projeto2020.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class teste1 : IMigrationMetadata
+    public sealed partial class Reserva : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(teste1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Reserva));
         
         string IMigrationMetadata.Id
         {
-            get { return "202101070052119_teste1"; }
+            get { return "202101071512337_Reserva"; }
         }
         
         string IMigrationMetadata.Source

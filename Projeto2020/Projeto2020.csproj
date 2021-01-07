@@ -174,64 +174,35 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InitAdminController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReservasController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UsersAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101042252593_Tudo.cs" />
-    <Compile Include="Migrations\202101042252593_Tudo.Designer.cs">
-      <DependentUpon>202101042252593_Tudo.cs</DependentUpon>
+    <Compile Include="Migrations\202101071509416_Tudo.cs" />
+    <Compile Include="Migrations\202101071509416_Tudo.Designer.cs">
+      <DependentUpon>202101071509416_Tudo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101060044543_Categoria.cs" />
-    <Compile Include="Migrations\202101060044543_Categoria.Designer.cs">
-      <DependentUpon>202101060044543_Categoria.cs</DependentUpon>
+    <Compile Include="Migrations\202101071512337_Reserva.cs" />
+    <Compile Include="Migrations\202101071512337_Reserva.Designer.cs">
+      <DependentUpon>202101071512337_Reserva.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101060050085_CarroComCategoria.cs" />
-    <Compile Include="Migrations\202101060050085_CarroComCategoria.Designer.cs">
-      <DependentUpon>202101060050085_CarroComCategoria.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101062013286_Virtual.cs" />
-    <Compile Include="Migrations\202101062013286_Virtual.Designer.cs">
-      <DependentUpon>202101062013286_Virtual.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101062202584_checkboxCriadoCarroTemEmpresa.cs" />
-    <Compile Include="Migrations\202101062202584_checkboxCriadoCarroTemEmpresa.Designer.cs">
-      <DependentUpon>202101062202584_checkboxCriadoCarroTemEmpresa.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101062220382_ReservaTemCliente.cs" />
-    <Compile Include="Migrations\202101062220382_ReservaTemCliente.Designer.cs">
-      <DependentUpon>202101062220382_ReservaTemCliente.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101062236360_ReservaComInicioFimData.cs" />
-    <Compile Include="Migrations\202101062236360_ReservaComInicioFimData.Designer.cs">
-      <DependentUpon>202101062236360_ReservaComInicioFimData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101062353117_EmpresaAddReserva.cs" />
-    <Compile Include="Migrations\202101062353117_EmpresaAddReserva.Designer.cs">
-      <DependentUpon>202101062353117_EmpresaAddReserva.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101062355547_EmpresaAddReserva1.cs" />
-    <Compile Include="Migrations\202101062355547_EmpresaAddReserva1.Designer.cs">
-      <DependentUpon>202101062355547_EmpresaAddReserva1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101070048502_teste.cs" />
-    <Compile Include="Migrations\202101070048502_teste.Designer.cs">
-      <DependentUpon>202101070048502_teste.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101070052119_teste1.cs" />
-    <Compile Include="Migrations\202101070052119_teste1.Designer.cs">
-      <DependentUpon>202101070052119_teste1.cs</DependentUpon>
+    <Compile Include="Migrations\202101071722472_virtuals.cs" />
+    <Compile Include="Migrations\202101071722472_virtuals.Designer.cs">
+      <DependentUpon>202101071722472_virtuals.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Reserva.cs" />
+    <Compile Include="ViewModels\AddVerificacao.cs" />
     <Compile Include="Models\Carro.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Models\CheckboxListItem.cs" />
     <Compile Include="Models\Empresa.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Reserva.cs" />
+    <Compile Include="Models\Verificacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -276,7 +247,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
@@ -321,6 +291,13 @@
     <Content Include="Views\Carros\Details.cshtml" />
     <Content Include="Views\Carros\Edit.cshtml" />
     <Content Include="Views\Carros\Index.cshtml" />
+    <Content Include="Views\Shared\CheckBoxListItem.cshtml" />
+    <Content Include="Views\UsersAdmin\Suspend.cshtml" />
+    <Content Include="Views\Reservas\Index.cshtml" />
+    <Content Include="Views\Reservas\IndexFuncionarios.cshtml" />
+    <Content Include="Views\Carros\IndexEmpresa.cshtml" />
+    <Content Include="Views\Account\RegisterEmpresa.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -335,39 +312,16 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101042252593_Tudo.resx">
-      <DependentUpon>202101042252593_Tudo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101071509416_Tudo.resx">
+      <DependentUpon>202101071509416_Tudo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101060044543_Categoria.resx">
-      <DependentUpon>202101060044543_Categoria.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101071512337_Reserva.resx">
+      <DependentUpon>202101071512337_Reserva.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101060050085_CarroComCategoria.resx">
-      <DependentUpon>202101060050085_CarroComCategoria.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101062013286_Virtual.resx">
-      <DependentUpon>202101062013286_Virtual.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101062202584_checkboxCriadoCarroTemEmpresa.resx">
-      <DependentUpon>202101062202584_checkboxCriadoCarroTemEmpresa.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101062220382_ReservaTemCliente.resx">
-      <DependentUpon>202101062220382_ReservaTemCliente.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101062236360_ReservaComInicioFimData.resx">
-      <DependentUpon>202101062236360_ReservaComInicioFimData.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101062353117_EmpresaAddReserva.resx">
-      <DependentUpon>202101062353117_EmpresaAddReserva.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101062355547_EmpresaAddReserva1.resx">
-      <DependentUpon>202101062355547_EmpresaAddReserva1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101070048502_teste.resx">
-      <DependentUpon>202101070048502_teste.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101070052119_teste1.resx">
-      <DependentUpon>202101070052119_teste1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101071722472_virtuals.resx">
+      <DependentUpon>202101071722472_virtuals.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

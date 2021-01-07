@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
@@ -76,7 +77,6 @@ namespace Projeto2020.Controllers
             var empresaId = (from l in db.Users
                              where l.Id == currentUserID
                              select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
-
 
             var funcionarios = db.Users.Where(p => p.idEmpresa == empresaId);
             
@@ -166,7 +166,6 @@ namespace Projeto2020.Controllers
                     return View(model);
             }
         }
-
         //
         // GET: /Account/Register
         [AllowAnonymous]
@@ -315,6 +314,52 @@ namespace Projeto2020.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+        // Registar Funcionarios!!
+        // GET: /Account/RegisterEmpresa
+        [Authorize(Roles = "Empresa")]
+        public ActionResult RegisterEmpresa(int id = 0)
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/RegisterEmpresa
+        [HttpPost]
+        [Authorize(Roles = "Empresa")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterEmpresa(RegisterViewModel model)
+        {
+            string username = model.Email.Substring(0, model.Email.IndexOf('@')); // nome da empresa;
+            string currentUserID = User.Identity.GetUserId();
+
+            var empresaId = (from l in db.Users
+                             where l.Id == currentUserID
+                             select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
+
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, idEmpresa = empresaId };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    result = await UserManager.AddToRoleAsync(user.Id, "Empresa");
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
         //
         // GET: /Account/ConfirmEmail
         [AllowAnonymous]
