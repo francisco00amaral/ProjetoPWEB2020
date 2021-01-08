@@ -1,0 +1,94 @@
+﻿@model IEnumerable<Projeto2020.Models.Reserva>
+
+@{
+    ViewBag.Title = "Reservas não confirmadas";
+}
+
+<h2>Reservas não confirmadas</h2>
+
+
+<style>
+    table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .parent-style-one {
+        font-family: helvetica;
+        text-decoration: none;
+    }
+
+    .table td {
+        padding: 12px 15px;
+    }
+
+    .table th {
+        padding: 12px 15px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<div class="parent-style-one">
+    <p>
+        @Html.ActionLink("Ver todas as reservas", "ListadeReservas")
+    </p>
+    <p>
+        @Html.ActionLink("Ver reservas confirmadas", "ReservasYes")
+    </p>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carro.Categoria.nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InicioReserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FimReserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustoPrevisto)
+            </th>
+    </thead>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carro.Categoria.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InicioReserva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FimReserva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustoPrevisto)
+            </td>
+        </tr>
+    }
+
+</table>

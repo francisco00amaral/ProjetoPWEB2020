@@ -11,6 +11,7 @@ namespace Projeto2020.Models
     {
         [Key]
         public int idReserva { get; set; }
+        [ForeignKey("Carro")]
         public int idCarro { get; set; }
 
         [Display(Name = "Data de inicio do aluguer")]
@@ -19,7 +20,11 @@ namespace Projeto2020.Models
         [Display(Name = "Data do fim do aluguer")]
         public DateTime FimReserva { get; set; }
 
+        [Display(Name = "Custo previsto(€)")]
+        public decimal CustoPrevisto { get; set; }
         public bool isEntregue { get; set; }
+        public bool isRecebido { get; set; }
+
 
         // 1 compra e de um produto, e um produto pode ter multiplas compras
         public virtual Carro Carro { get; set; }

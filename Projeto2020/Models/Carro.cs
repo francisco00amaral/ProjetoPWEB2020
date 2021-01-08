@@ -15,7 +15,7 @@ namespace Projeto2020.Models
 
         public string Modelo { get; set; }
 
-        [Display(Name="Preço por Hora")]
+        [Display(Name="Preço por minuto")]
         public float preco { get; set; }
 
         public int km { get; set; }

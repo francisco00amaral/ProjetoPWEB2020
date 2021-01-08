@@ -54,7 +54,6 @@ namespace Projeto2020.Controllers
         public ActionResult Create()
         {
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome");
-            ViewBag.idEmpresa = new SelectList(db.Empresas, "idEmpresa", "nome");
             return View();
         }
 
@@ -63,9 +62,14 @@ namespace Projeto2020.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idCarro,Marca,Modelo,preco,km,deposito,idCategoria,idEmpresa")] Carro carro,int id = 0)
-        {   
-            if (ModelState.IsValid)
+        public ActionResult Create([Bind(Include = "idCarro,Marca,Modelo,preco,km,deposito,idCategoria")] Carro carro,int id = 0)
+        {
+            string currentUserId = User.Identity.GetUserId();
+            var empresaId = (from l in db.Users
+                             where l.Id == currentUserId
+                             select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
+            // seleciona-me todas as reservas por confirmar(is entregue == false)            if (ModelState.IsValid)
+            carro.idEmpresa = (int)empresaId;
             {
                 db.Carros.Add(carro);
                 db.SaveChanges();

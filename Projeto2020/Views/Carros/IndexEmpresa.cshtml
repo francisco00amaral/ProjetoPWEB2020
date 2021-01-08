@@ -5,66 +5,104 @@
 }
 
 <h2>Veiculos da minha empresa</h2>
-
-<p>
-    @Html.ActionLink("Adicionar novo veiculo", "Create", new { id = 1 })
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Categoria.nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Empresa.nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Marca)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Modelo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.preco)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.km)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.deposito)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria.nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Empresa.nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Marca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Modelo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.preco)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.km)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.deposito)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.idCarro }) |
-                @Html.ActionLink("Details", "Details", new { id = item.idCarro }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.idCarro })
-            </td>
-        </tr>
+<style>
+    table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     }
 
-</table>
+    .table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .parent-style-one {
+        font-family: helvetica;
+        text-decoration: none;
+    }
+
+    .table td {
+        padding: 12px 15px;
+    }
+
+    .table th {
+        padding: 12px 15px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+<div class="parent-style-one">
+    <p>
+        @Html.ActionLink("Adicionar novo veiculo", "Create", new { id = 1 })
+    </p>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Categoria.nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Empresa.nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Marca)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Modelo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.preco)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.km)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.deposito)
+                </th>
+                <th>
+                    Opcoes
+                </th>
+           </thead>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Categoria.nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Empresa.nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.preco)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.km)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.deposito)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.idCarro }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.idCarro }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.idCarro })
+                </td>
+            </tr>
+        }
+
+    </table>

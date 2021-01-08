@@ -171,6 +171,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CarrosController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InitAdminController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -192,9 +194,19 @@
     <Compile Include="Migrations\202101071722472_virtuals.Designer.cs">
       <DependentUpon>202101071722472_virtuals.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101072352376_ReservaComMaisCampos.cs" />
+    <Compile Include="Migrations\202101072352376_ReservaComMaisCampos.Designer.cs">
+      <DependentUpon>202101072352376_ReservaComMaisCampos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101080138074_ReservaComMaisCamposs.cs" />
+    <Compile Include="Migrations\202101080138074_ReservaComMaisCamposs.Designer.cs">
+      <DependentUpon>202101080138074_ReservaComMaisCamposs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CarroViewModel.cs" />
     <Compile Include="Models\Reserva.cs" />
+    <Compile Include="Models\ReservaViewModel.cs" />
     <Compile Include="ViewModels\AddVerificacao.cs" />
     <Compile Include="Models\Carro.cs" />
     <Compile Include="Models\Categoria.cs" />
@@ -298,6 +310,15 @@
     <Content Include="Views\Carros\IndexEmpresa.cshtml" />
     <Content Include="Views\Account\RegisterEmpresa.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Funcionarios\ReservasConfirmadas.cshtml" />
+    <Content Include="Views\Funcionarios\ReservasPorConfirmar.cshtml" />
+    <Content Include="Views\Funcionarios\Index.cshtml" />
+    <Content Include="Views\Clientes\MyReservas.cshtml" />
+    <Content Include="Views\Clientes\Reservar.cshtml" />
+    <Content Include="Views\Funcionarios\ConfirmaReserva.cshtml" />
+    <Content Include="Views\Clientes\ListadeReservas.cshtml" />
+    <Content Include="Views\Clientes\ReservasYes.cshtml" />
+    <Content Include="Views\Clientes\ReservasNo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -322,6 +343,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101071722472_virtuals.resx">
       <DependentUpon>202101071722472_virtuals.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101072352376_ReservaComMaisCampos.resx">
+      <DependentUpon>202101072352376_ReservaComMaisCampos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101080138074_ReservaComMaisCamposs.resx">
+      <DependentUpon>202101080138074_ReservaComMaisCamposs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
