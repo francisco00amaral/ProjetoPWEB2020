@@ -50,9 +50,6 @@
                     @Html.DisplayNameFor(model => model.Categoria.nome)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Empresa.nome)
-                </th>
-                <th>
                     @Html.DisplayNameFor(model => model.Marca)
                 </th>
                 <th>
@@ -61,11 +58,6 @@
                 <th>
                     @Html.DisplayNameFor(model => model.preco)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.km)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.deposito)
                 </th>
                 <th>
                     Opcoes
@@ -80,9 +72,6 @@
                     @Html.DisplayFor(modelItem => item.Categoria.nome)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Empresa.nome)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Marca)
                 </td>
                 <td>
@@ -90,12 +79,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.preco)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.km)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.deposito)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.idCarro }) |

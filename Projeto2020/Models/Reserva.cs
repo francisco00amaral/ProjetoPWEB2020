@@ -14,10 +14,10 @@ namespace Projeto2020.Models
         [ForeignKey("Carro")]
         public int idCarro { get; set; }
 
-        [Display(Name = "Data de inicio do aluguer")]
+        [Display(Name = "Data de inicio da reserva")]
         public DateTime InicioReserva { get; set; }
 
-        [Display(Name = "Data do fim do aluguer")]
+        [Display(Name = "Data do fim da reserva")]
         public DateTime FimReserva { get; set; }
 
         [Display(Name = "Custo previsto(€)")]

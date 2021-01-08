@@ -4,6 +4,39 @@
     ViewBag.Title = "Gestão";
 }
 
+<style>
+    table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .table thead tr {
+        background-color: #c51515;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .parent-style-one {
+        font-family: helvetica;
+        text-decoration: none;
+    }
+
+    .table td {
+        padding: 12px 15px;
+    }
+
+    .table th {
+        padding: 12px 15px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
 <h2>
     @ViewBag.Titulo
 </h2>
@@ -12,33 +45,29 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            <div>Nome da empresa</div>
-        </th>
-        <th>
-
-        </th>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                Opções
+            </th>
+    </thead>
     </tr>
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.UserName)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Empresa.nome)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @style = "color:green;" }) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-        @Html.ActionLink("Suspend", "Suspend", new { id = item.Id }, new { @style = "color:red;" }) 
-    </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @style = "color:green;" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Suspend", "Suspend", new { id = item.Id }, new { @style = "color:red;" })
+            </td>
+        </tr>
     }
 
 </table>

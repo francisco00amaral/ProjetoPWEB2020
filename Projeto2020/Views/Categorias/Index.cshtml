@@ -1,33 +1,71 @@
 ﻿@model IEnumerable<Projeto2020.Models.Categoria>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Gestão de categorias";
 }
 
-<h2>Index</h2>
+<style>
+    table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .table thead tr {
+        background-color: #c51515;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .parent-style-one {
+        font-family: helvetica;
+        text-decoration: none;
+    }
+
+    .table td {
+        padding: 12px 15px;
+    }
+
+    .table th {
+        padding: 12px 15px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h2>Gestão de categorias disponiveis</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Nova categoria", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nome)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nome)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nome)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idCategoria }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idCategoria }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idCategoria })
-        </td>
-    </tr>
-}
+   @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nome)
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.idCategoria }) |
+                    @Html.ActionLink("Detalhes", "Details", new { id = item.idCategoria })  
+                </td>
+            </tr>
+
+        }
 
 </table>

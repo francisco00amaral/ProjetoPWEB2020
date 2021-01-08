@@ -4,14 +4,35 @@
     ViewBag.Title = "Reservas confirmadas";
 }
 
-<h2>Alugueres Ativos</h2>
+<h2>Reservas por entregar</h2>
 
 <style>
     table {
         border-collapse: collapse;
-        border-spacing: 0;
-        width: 100%;
-        border: 1px solid black;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .parent-style-one {
+        font-family: helvetica;
+        text-decoration: none;
+    }
+
+    .table td {
+        padding: 12px 15px;
+    }
+
+    .table th {
+        padding: 12px 15px;
     }
 
     tr:nth-child(even) {
@@ -20,67 +41,63 @@
 </style>
 
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Carro.Marca)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Carro.Modelo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Carro.Categoria.nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.InicioReserva)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FimReserva)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CustoPrevisto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isEntregue)
-        </th>
-        <th>
+    <thead>
+        <tr>
+            <th>
+                Email do cliente
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carro.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carro.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carro.Categoria.nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.InicioReserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FimReserva)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustoPrevisto)
+            </th>
+            <th>
+                Entregar
+            </th>
+    </thead>
 
-        </th>
-    </tr>
 
     @foreach (var item in Model)
     {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Carro.Marca)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Carro.Modelo)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.Carro.Categoria.nome)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.InicioReserva)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.FimReserva)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CustoPrevisto)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.isEntregue)
-    </td>
-    <td>
-        @Html.ActionLink("Confirmar", "ConfirmaReserva", "Funcionarios", new { id = item.idCarro }, new { @style = "color:green;" }) |
-    </td>
-</tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carro.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carro.Modelo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carro.Categoria.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InicioReserva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FimReserva)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustoPrevisto)
+            </td>
+            <td>
+                @Html.ActionLink("Entregar veiculo", "ConfirmaReserva", "Funcionarios", new { id = item.idCarro }, new { @style = "color:green;" })
+            </td>
+        </tr>
     }
 
 </table>

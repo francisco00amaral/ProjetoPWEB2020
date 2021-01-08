@@ -26,8 +26,8 @@
 
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Cliente"))
                     {
-                        <li>@Html.ActionLink("Reservas", "Index", "Reservas")</li>
-
+                        
+                        <li>@Html.ActionLink("Histórico reservas", "ListadeReservas", "Clientes")</li>
                     }
 
 
