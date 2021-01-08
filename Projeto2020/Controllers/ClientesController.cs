@@ -61,16 +61,15 @@ namespace Projeto2020.Controllers
             db.SaveChanges();
              
       
-            return RedirectToAction("MyReservas","Clientes");
+            return RedirectToAction("ListadeReservas","Clientes");
         }
-
-        // Falta fazer as views disto!!!
 
         // todas as reservas feitas por o user, confirmadas e nao confirmadas
         public ActionResult ListadeReservas()
         {
             string currentUserId = User.Identity.GetUserId();
             var reserva = db.Reservas.Where(x => x.UserId == currentUserId).ToList();
+
             return View(reserva);
         }
         // todas as reservas feitas pelo user confirmadas

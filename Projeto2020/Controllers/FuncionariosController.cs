@@ -41,7 +41,7 @@ namespace Projeto2020.Controllers
             var currentUserID = User.Identity.GetUserId();
             var carro = db.Carros.Find(model.CarroId);
 
-            // para o funcionario quando vai entregar meter o deposito e o km
+            // mete os valores do carro com os que o funcionario meteu no form do get
             carro.deposito = model.deposito;
             carro.km = model.km;
             // encontrar a reserva e meter o isEntregue a true;
@@ -54,6 +54,8 @@ namespace Projeto2020.Controllers
 
             db.Entry(carro).State = EntityState.Modified;
             db.Entry(encontrado).State = EntityState.Modified;
+
+            db.SaveChanges();
 
             return RedirectToAction("ReservasPorConfirmar", "Funcionarios");
         }

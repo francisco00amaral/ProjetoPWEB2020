@@ -4,7 +4,7 @@
     ViewBag.Title = "Reservas confirmadas";
 }
 
-<h2>Reservas Confirmadas</h2>
+<h2>Reservas entregues</h2>
 
 <style>
     table {
@@ -47,7 +47,13 @@
                 Email do cliente
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Carro.Categoria)
+                @Html.DisplayNameFor(model => model.Carro.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carro.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carro.Categoria.nome)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.InicioReserva)
@@ -56,32 +62,48 @@
                 @Html.DisplayNameFor(model => model.FimReserva)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CustoPrevisto)
+                Kilometros
             </th>
             <th>
-                Detalhes
+                Deposito
             </th>
-    </thead>
+            <th>
+                @Html.DisplayNameFor(model => model.CustoPrevisto)
+            </th>
+</thead>
+
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Carro.Categoria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InicioReserva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FimReserva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustoPrevisto)
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Carro.Marca)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Carro.Modelo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Carro.Categoria.nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InicioReserva)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FimReserva)
+    </td>
+    <th>
+        @Html.DisplayFor(modelItem => item.Carro.km)
+    </th>
+    <th>
+        @Html.DisplayFor(modelItem => item.Carro.deposito)
+    </th>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustoPrevisto)
+    </td>
+</tr>
     }
 
 </table>
