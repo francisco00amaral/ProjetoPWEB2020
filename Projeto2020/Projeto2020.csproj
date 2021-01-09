@@ -333,6 +333,7 @@
     <Content Include="Views\Funcionarios\ReservasRecebidas.cshtml" />
     <Content Include="Views\Funcionarios\ReservasPorReceber.cshtml" />
     <Content Include="Views\Funcionarios\AreaFunc.cshtml" />
+    <Content Include="Views\Funcionarios\Recebe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

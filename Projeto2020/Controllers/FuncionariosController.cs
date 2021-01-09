@@ -92,7 +92,49 @@ namespace Projeto2020.Controllers
 
             return RedirectToAction("ReservasPorConfirmar", "Funcionarios");
         }
-        
+
+        public ActionResult Recebe(int? id)
+        {
+            if (id != null)
+            {
+                RecebeCarroVM model = new RecebeCarroVM()
+                {
+                    CarroId = (int)id,
+                };
+                return View(model);
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Recebe(CarroViewModel model)
+        {
+            var currentUserID = User.Identity.GetUserId();
+            var carro = db.Carros.Find(model.CarroId);
+
+            // mete os valores do carro com os que o funcionario meteu no form do get
+            carro.deposito = model.deposito;
+            carro.km = model.km;
+            // falta aqui o upload da foto...
+            // encontrar a reserva e meter o isEntregue a true;
+            var reserva = (from l in db.Reservas
+                           where l.idCarro == model.CarroId
+                           select l.idReserva).First();
+
+            var encontrado = db.Reservas.Find(reserva);
+            encontrado.isRecebido = true;
+            encontrado.isConcluido = true;
+
+            db.Entry(carro).State = EntityState.Modified;
+            db.Entry(encontrado).State = EntityState.Modified;
+
+            db.SaveChanges();
+
+            return RedirectToAction("ReservasPorConfirmar", "Funcionarios");
+        }
+
         public ActionResult ReservasConfirmadas()
         {
             atualizaReservas();
@@ -103,7 +145,7 @@ namespace Projeto2020.Controllers
                              select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
             // seleciona-me todas as reservas confirmadas(is entregue == true)
 
-            var reserva = db.Reservas.Where(x => x.Carro.idEmpresa == empresaId).Where(l => l.isEntregue == true).ToList();
+            var reserva = db.Reservas.Where(x => x.Carro.idEmpresa == empresaId).Where(l => l.isEntregue == true && l.isRecebido == false).ToList();
             return View(reserva);
         }
 
@@ -132,7 +174,7 @@ namespace Projeto2020.Controllers
                              select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
             // seleciona-me todas as reservas por confirmar(is entregue == false)
 
-            var reserva = db.Reservas.Where(x => x.Carro.idEmpresa == empresaId).Where(l => l.isEntregue == true && l.isEntregue == true && l.isConcluido == false).ToList();
+            var reserva = db.Reservas.Where(x => x.Carro.idEmpresa == empresaId).Where(l => l.isEntregue == true && l.isRecebido == false && l.isConcluido == false).ToList();
             return View(reserva);
         }
         // reservas recebidas e que ja foram confirmadas pelo funcionario
@@ -146,7 +188,7 @@ namespace Projeto2020.Controllers
                              select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
             // seleciona-me todas as reservas por confirmar(is entregue == false)
 
-            var reserva = db.Reservas.Where(x => x.Carro.idEmpresa == empresaId).Where(l => l.isEntregue == false && l.isEntregue == true && l.isConcluido == true).ToList();
+            var reserva = db.Reservas.Where(x => x.Carro.idEmpresa == empresaId).Where(l => l.isEntregue == true && l.isRecebido == true && l.isConcluido == true).ToList();
             return View(reserva);
         }
     }

@@ -17,5 +17,12 @@ namespace Projeto2020.Models
         public int deposito { get; set; }
 
         public int CarroId { get; set; }
+
+        public List<CheckboxListItem> verifications { get; set; }
+
+        public RecebeCarroVM()
+        {
+            verifications = new List<CheckboxListItem>();
+        }
     }
 }
