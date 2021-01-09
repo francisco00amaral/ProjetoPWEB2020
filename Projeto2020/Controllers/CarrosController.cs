@@ -18,9 +18,45 @@ namespace Projeto2020.Controllers
         // GET: Carros
         public ActionResult Index()
         {
+
+            atualizaReservas();
+            // da-me as carros reservados que ainda nao tao entregues
+            var carrinhos = (from l in db.Carros
+                             where l.reservado == false
+                             select l);
+            
             var carros = db.Carros.Include(c => c.Categoria).Include(c => c.Empresa);
-            return View(carros.ToList());
+            return View(carrinhos.ToList());
         }
+
+        private void atualizaReservas()
+        {
+            var Reservas = db.Reservas;
+
+            Reserva reserva;
+            Carro carro;
+
+            foreach (var a in Reservas.ToList())
+            {
+                if (a.FimReserva < DateTime.Now && a.isConcluido == false)
+                {
+                    //Remove o aluguer que terminou
+                    reserva = db.Reservas.Find(a.idReserva);
+                    reserva.isEntregue = true;
+                    reserva.isRecebido = true;
+                    reserva.isConcluido = true;
+                    //Encontra o carro e da reset a flag para o deixar reservar again
+                    carro = db.Carros.Find(a.idCarro);
+                    carro.reservado = false;
+
+                    db.Entry(carro).State = EntityState.Modified;
+
+                    db.Entry(reserva).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
+        }
+
 
         [Authorize(Roles ="Empresa")]
         public ActionResult IndexEmpresa()
@@ -69,7 +105,7 @@ namespace Projeto2020.Controllers
                              where l.Id == currentUserId
                              select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
             // seleciona-me todas as reservas por confirmar(is entregue == false)            if (ModelState.IsValid)
-            carro.idEmpresa = (int)empresaId;
+            carro.idEmpresa = (int)empresaId;   
             {
                 db.Carros.Add(carro);
                 db.SaveChanges();
@@ -80,12 +116,13 @@ namespace Projeto2020.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome", carro.idCategoria);
-            ViewBag.idEmpresa = new SelectList(db.Empresas, "idEmpresa", "nome", carro.idEmpresa);
-            return View(carro);
+            /* ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome", carro.idCategoria);
+            ViewBag.idEmpresa = new SelectList(db.Empresas, "idEmpresa", "nome", carro.idEmpresa); */
+            // return View(carro);
         }
 
         // GET: Carros/Edit/5
+        [Authorize(Roles = "Empresa")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -121,6 +158,7 @@ namespace Projeto2020.Controllers
         }
 
         // GET: Carros/Delete/5
+        [Authorize(Roles = "Empresa")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

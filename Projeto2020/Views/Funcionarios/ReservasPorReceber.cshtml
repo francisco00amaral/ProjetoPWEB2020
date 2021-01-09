@@ -1,11 +1,10 @@
 ﻿@model IEnumerable<Projeto2020.Models.Reserva>
 
 @{
-    ViewBag.Title = "Reservas não confirmadas";
+    ViewBag.Title = "Reservas que faltam serem recebidas";
 }
 
-<h2>Reservas não confirmadas</h2>
-
+<h2>Reservas que faltam ao funcionário receber</h2>
 
 <style>
     table {
@@ -41,19 +40,11 @@
     }
 </style>
 
-<div class="parent-style-one">
-    <p>
-        @Html.ActionLink("Ver todas as reservas", "ListadeReservas")
-    </p>
-    <p>
-        @Html.ActionLink("Ver reservas confirmadas", "ReservasYes")
-    </p>
-</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Carro.Empresa.nome)
+                Email do cliente
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Carro.Marca)
@@ -71,16 +62,24 @@
                 @Html.DisplayNameFor(model => model.FimReserva)
             </th>
             <th>
+                Kilometros
+            </th>
+            <th>
+                Deposito
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CustoPrevisto)
             </th>
-</thead>
-    
+            <th>
+            </th>
+    </thead>
+
 
     @foreach (var item in Model)
     {
 <tr>
     <td>
-        @Html.DisplayFor(modelItem => item.Carro.Empresa.nome)
+        @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Carro.Marca)
@@ -97,8 +96,17 @@
     <td>
         @Html.DisplayFor(modelItem => item.FimReserva)
     </td>
+    <th>
+        @Html.DisplayFor(modelItem => item.Carro.km)
+    </th>
+    <th>
+        @Html.DisplayFor(modelItem => item.Carro.deposito)
+    </th>
     <td>
         @Html.DisplayFor(modelItem => item.CustoPrevisto)
+    </td>
+    <td>
+        @Html.ActionLink("Receber veiculo", "Receber", "Funcionarios", new { id = item.idCarro }, null)
     </td>
 </tr>
     }

@@ -72,8 +72,11 @@
             <th>
                 @Html.DisplayNameFor(model => model.CustoPrevisto)
             </th>
+            <th>
+                Entregar
+            </th>
 </thead>
-    </tr>
+    
 
     @foreach (var item in Model)
     {
@@ -98,6 +101,9 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.CustoPrevisto)
+    </td>
+    <td>
+        @Html.ActionLink("Entregar o carro", "Entregar", new { id = item.idCarro })
     </td>
 </tr>
     }

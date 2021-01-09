@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Projeto2020.Controllers
 {
+    [Authorize]
     public class ClientesController : Controller
     {
         // GET: Clientes
@@ -22,6 +23,7 @@ namespace Projeto2020.Controllers
         //get
         public ActionResult Reservar(int? id)
         {
+
             if (id != null)
             {
                 ReservaViewModel model = new ReservaViewModel()
@@ -39,11 +41,14 @@ namespace Projeto2020.Controllers
         {
                 // arranja o id do user
                 var currentUserID = User.Identity.GetUserId();
-                // arranja o custo do carro
-                var custo = (from l in db.Carros
+
+                var carro = db.Carros.Find(model.CarroId);
+                carro.reservado = true;
+            // arranja o custo do carro
+            var custo = (from l in db.Carros
                              where l.idCarro == model.CarroId
                              select l.preco).First();
-
+            
             var totalPreco = (model.dataPretendidaFim - model.dataPretendidaInicio).TotalMinutes;
             var total = custo * totalPreco;
 
@@ -54,14 +59,61 @@ namespace Projeto2020.Controllers
                     FimReserva = model.dataPretendidaFim,
                     idCarro = model.CarroId,
                     isEntregue = false,
+                    isConcluido = false,
                     isRecebido = false,
                     CustoPrevisto = ((decimal)totalPreco),
                 };
+            db.Entry(carro).State = EntityState.Modified;
             db.Reservas.Add(reserva);
             db.SaveChanges();
              
       
             return RedirectToAction("ListadeReservas","Clientes");
+        }
+
+        //get
+        public ActionResult Entregar(int? id)
+        {
+            if (id != null)
+            {
+                ReservaViewModel model = new ReservaViewModel()
+                {
+                    CarroId = (int)id,
+                };
+                return View(model);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Entregar(ReservaViewModel model)
+        {
+            // arranja o id do user
+            var currentUserID = User.Identity.GetUserId();
+            // arranja a reserva associada
+            var reserva = (from l in db.Reservas
+                           where l.idCarro == model.CarroId
+                           select l.idReserva).First();
+            var encontrado = db.Reservas.Find(reserva);
+            encontrado.isRecebido = true;
+
+            // arranja o custo do carro e acerta-o para os minutos que quis até o decidir entregar
+            var custo = (from l in db.Carros
+                         where l.idCarro == model.CarroId
+                         select l.preco).First();
+
+            // OCMPOR ISTO
+            var totalPreco = (DateTime.Now - model.dataPretendidaInicio).TotalMinutes;
+            var total = custo * totalPreco;
+            ViewBag.Preco = total;
+
+            encontrado.CustoPrevisto = (decimal)total;
+
+            db.Entry(encontrado).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return RedirectToAction("ListadeReservas", "Clientes");
         }
 
         // todas as reservas feitas por o user, confirmadas e nao confirmadas

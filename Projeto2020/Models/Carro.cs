@@ -22,6 +22,7 @@ namespace Projeto2020.Models
 
         public int deposito { get; set; }
 
+        public bool reservado { get; set; }
 
         // 1 carro tem 1 categoria associada
         [ForeignKey("Categoria")]

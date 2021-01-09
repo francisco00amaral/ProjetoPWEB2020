@@ -67,7 +67,10 @@
                     @Html.DisplayNameFor(model => model.CustoPrevisto)
                 </th>
                 <th>
-                    Estado
+                    Recebido
+                </th>
+                <th>
+                    Entregue
                 </th>
 </thead>
 
@@ -97,6 +100,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.isEntregue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isRecebido)
         </td>
     </tr>
         }

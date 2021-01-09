@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Area de funcionario";
+}
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    .myclass {
+        background-color: #EEEEEE;
+        padding: 15px 20px;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+        a:hover {
+            background-color: #ffa474;
+        }
+
+    /* Create three equal columns that floats next to each other */
+    .column {
+        float: left;
+        width: 33.33%;
+        padding: 10px;
+        height: 300px; /* Should be removed. Only for demonstration */
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+<h1 style="font-size:30px;color:#3b3ff9">Area de funcionario</h1>
+
+<div class="row">
+    <div class="column">
+        <h2>Entregar veiculos a clientes</h2>
+        <p class="lead">Aqui pode ver as reservas que faltam confirmar a entrega do veiculo</p>
+        @Html.ActionLink("Entregar Reservas", "ReservasPorConfirmar", "Funcionarios", null, new { @class = "myclass" })
+    </div>
+    <div class="column">
+        <h2>Receber veiculos de clientes</h2>
+        <p class="lead">Aqui pode ver as reservas que faltam confirmar a receção do veiculo</p>
+        @Html.ActionLink("Receber veículo", "ReservasPorReceber", "Funcionarios", null, new { @class = "myclass" })
+    </div>
+
+    <div class="column">
+       <h2>Reservas confirmadas e faltam ser entregues</h2>
+        <p class="lead">Aqui pode ver todas as reservas que estão em ocorrência</p>
+        @Html.ActionLink("Ver reservas em ocorrência", "ReservasConfirmadas", "Funcionarios", null, new { @class = "myclass" })
+    </div>
+    <div class="column">
+        <h2>Ver todas as reservas confirmadas e entregues</h2>
+        <p class="lead">Aqui pode ver todas as reservas que já foram confirmadas e entregues</p>
+        @Html.ActionLink("Ver todas as reservas entregues", "ReservasRecebidas", "Funcionarios", null, new { @class = "myclass" })
+    </div>
+</div>
+
+

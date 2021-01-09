@@ -201,6 +201,18 @@
     <Compile Include="Migrations\202101080138074_ReservaComMaisCamposs.Designer.cs">
       <DependentUpon>202101080138074_ReservaComMaisCamposs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101082329481_ReservaComMaisUmCampo.cs" />
+    <Compile Include="Migrations\202101082329481_ReservaComMaisUmCampo.Designer.cs">
+      <DependentUpon>202101082329481_ReservaComMaisUmCampo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101082340046_ReservaComMaisUmCampo1.cs" />
+    <Compile Include="Migrations\202101082340046_ReservaComMaisUmCampo1.Designer.cs">
+      <DependentUpon>202101082340046_ReservaComMaisUmCampo1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101090106446_campoNoCarro.cs" />
+    <Compile Include="Migrations\202101090106446_campoNoCarro.Designer.cs">
+      <DependentUpon>202101090106446_campoNoCarro.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CarroViewModel.cs" />
@@ -316,6 +328,11 @@
     <Content Include="Views\Clientes\ListadeReservas.cshtml" />
     <Content Include="Views\Clientes\ReservasYes.cshtml" />
     <Content Include="Views\Clientes\ReservasNo.cshtml" />
+    <Content Include="Views\Clientes\Entregar.cshtml" />
+    <Content Include="Views\Funcionarios\ReservasRecebidas.cshtml" />
+    <Content Include="Views\Funcionarios\ReservasPorReceber.cshtml" />
+    <Content Include="Views\Funcionarios\JaReservado.cshtml" />
+    <Content Include="Views\Funcionarios\AreaFunc.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -346,6 +363,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101080138074_ReservaComMaisCamposs.resx">
       <DependentUpon>202101080138074_ReservaComMaisCamposs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101082329481_ReservaComMaisUmCampo.resx">
+      <DependentUpon>202101082329481_ReservaComMaisUmCampo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101082340046_ReservaComMaisUmCampo1.resx">
+      <DependentUpon>202101082340046_ReservaComMaisUmCampo1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101090106446_campoNoCarro.resx">
+      <DependentUpon>202101090106446_campoNoCarro.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
