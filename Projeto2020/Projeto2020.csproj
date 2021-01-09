@@ -216,6 +216,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CarroViewModel.cs" />
+    <Compile Include="Models\RecebeCarroVM.cs" />
     <Compile Include="Models\Reserva.cs" />
     <Compile Include="Models\ReservaViewModel.cs" />
     <Compile Include="ViewModels\AddVerificacao.cs" />
@@ -331,7 +332,6 @@
     <Content Include="Views\Clientes\Entregar.cshtml" />
     <Content Include="Views\Funcionarios\ReservasRecebidas.cshtml" />
     <Content Include="Views\Funcionarios\ReservasPorReceber.cshtml" />
-    <Content Include="Views\Funcionarios\JaReservado.cshtml" />
     <Content Include="Views\Funcionarios\AreaFunc.cshtml" />
   </ItemGroup>
   <ItemGroup>

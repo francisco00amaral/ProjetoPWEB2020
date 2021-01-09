@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Projeto2020.Controllers
 {
-    [Authorize(Roles ="Funcionários")]
+    [Authorize(Roles ="Funcionário")]
     public class FuncionariosController : Controller
     {
 
@@ -24,6 +24,33 @@ namespace Projeto2020.Controllers
         public ActionResult JaReservado()
         {
             return View();
+        }
+        private void atualizaReservas()
+        {
+            var Reservas = db.Reservas;
+
+            Reserva reserva;
+            Carro carro;
+
+            foreach (var a in Reservas.ToList())
+            {
+                if (a.FimReserva < DateTime.Now && a.isConcluido == false)
+                {
+                    //Remove o aluguer que terminou
+                    reserva = db.Reservas.Find(a.idReserva);
+                    reserva.isEntregue = true;
+                    reserva.isRecebido = true;
+                    reserva.isConcluido = true;
+                    //Encontra o carro e da reset a flag para o deixar reservar again
+                    carro = db.Carros.Find(a.idCarro);
+                    carro.reservado = false;
+
+                    db.Entry(carro).State = EntityState.Modified;
+
+                    db.Entry(reserva).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            }
         }
 
         public ActionResult ConfirmaReserva(int ?id)
@@ -68,6 +95,8 @@ namespace Projeto2020.Controllers
         
         public ActionResult ReservasConfirmadas()
         {
+            atualizaReservas();
+
             string currentUserId = User.Identity.GetUserId();
             var empresaId = (from l in db.Users
                              where l.Id == currentUserId
@@ -80,6 +109,8 @@ namespace Projeto2020.Controllers
 
         public ActionResult ReservasPorConfirmar()
         {
+            atualizaReservas();
+
             string currentUserId = User.Identity.GetUserId();
             var empresaId = (from l in db.Users
                              where l.Id == currentUserId
@@ -93,6 +124,8 @@ namespace Projeto2020.Controllers
         // reservas recebidas que ainda nao foram recebidas pelo funcionario
         public ActionResult ReservasPorReceber()
         {
+            atualizaReservas();
+
             string currentUserId = User.Identity.GetUserId();
             var empresaId = (from l in db.Users
                              where l.Id == currentUserId
@@ -105,6 +138,8 @@ namespace Projeto2020.Controllers
         // reservas recebidas e que ja foram confirmadas pelo funcionario
         public ActionResult ReservasRecebidas()
         {
+            atualizaReservas();
+
             string currentUserId = User.Identity.GetUserId();
             var empresaId = (from l in db.Users
                              where l.Id == currentUserId
