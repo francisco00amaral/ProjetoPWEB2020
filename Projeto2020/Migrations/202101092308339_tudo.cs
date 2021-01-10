@@ -3,7 +3,7 @@ namespace Projeto2020.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Tudo : DbMigration
+    public partial class tudo : DbMigration
     {
         public override void Up()
         {
@@ -17,6 +17,7 @@ namespace Projeto2020.Migrations
                         preco = c.Single(nullable: false),
                         km = c.Int(nullable: false),
                         deposito = c.Int(nullable: false),
+                        reservado = c.Boolean(nullable: false),
                         idCategoria = c.Int(nullable: false),
                         idEmpresa = c.Int(nullable: false),
                     })
@@ -45,40 +46,49 @@ namespace Projeto2020.Migrations
                 .PrimaryKey(t => t.idEmpresa);
             
             CreateTable(
+                "dbo.Verificacaos",
+                c => new
+                    {
+                        idVerificacao = c.Int(nullable: false, identity: true),
+                        nome = c.String(),
+                        idCategoria = c.Int(nullable: false),
+                        Empresa_idEmpresa = c.Int(),
+                    })
+                .PrimaryKey(t => t.idVerificacao)
+                .ForeignKey("dbo.Categorias", t => t.idCategoria, cascadeDelete: true)
+                .ForeignKey("dbo.Empresas", t => t.Empresa_idEmpresa)
+                .Index(t => t.idCategoria)
+                .Index(t => t.Empresa_idEmpresa);
+            
+            CreateTable(
                 "dbo.CheckboxListItems",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Display = c.String(),
                         IsChecked = c.Boolean(nullable: false),
-                        Empresa_idEmpresa = c.Int(),
                     })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Empresas", t => t.Empresa_idEmpresa)
-                .Index(t => t.Empresa_idEmpresa);
+                .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.AspNetRoles",
+                "dbo.Reservas",
                 c => new
                     {
-                        Id = c.String(nullable: false, maxLength: 128),
-                        Name = c.String(nullable: false, maxLength: 256),
+                        idReserva = c.Int(nullable: false, identity: true),
+                        idCarro = c.Int(nullable: false),
+                        InicioReserva = c.DateTime(nullable: false),
+                        FimReserva = c.DateTime(nullable: false),
+                        CustoPrevisto = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        isEntregue = c.Boolean(nullable: false),
+                        isConcluido = c.Boolean(nullable: false),
+                        isRecebido = c.Boolean(nullable: false),
+                        UserId = c.String(maxLength: 128),
                     })
-                .PrimaryKey(t => t.Id)
-                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
-            
-            CreateTable(
-                "dbo.AspNetUserRoles",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128),
-                        RoleId = c.String(nullable: false, maxLength: 128),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.RoleId })
-                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.RoleId);
+                .PrimaryKey(t => t.idReserva)
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId)
+                .ForeignKey("dbo.Carroes", t => t.idCarro, cascadeDelete: true)
+                .Index(t => t.idCarro)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -128,34 +138,65 @@ namespace Projeto2020.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
+            CreateTable(
+                "dbo.AspNetUserRoles",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128),
+                        RoleId = c.String(nullable: false, maxLength: 128),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.RoleId })
+                .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
+                .ForeignKey("dbo.AspNetRoles", t => t.RoleId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.AspNetRoles",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128),
+                        Name = c.String(nullable: false, maxLength: 256),
+                    })
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Name, unique: true, name: "RoleNameIndex");
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.Reservas", "idCarro", "dbo.Carroes");
+            DropForeignKey("dbo.Reservas", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUsers", "idEmpresa", "dbo.Empresas");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Carroes", "idEmpresa", "dbo.Empresas");
-            DropForeignKey("dbo.CheckboxListItems", "Empresa_idEmpresa", "dbo.Empresas");
+            DropForeignKey("dbo.Verificacaos", "Empresa_idEmpresa", "dbo.Empresas");
+            DropForeignKey("dbo.Verificacaos", "idCategoria", "dbo.Categorias");
             DropForeignKey("dbo.Carroes", "idCategoria", "dbo.Categorias");
+            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
+            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUsers", new[] { "idEmpresa" });
-            DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
-            DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
-            DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.CheckboxListItems", new[] { "Empresa_idEmpresa" });
+            DropIndex("dbo.Reservas", new[] { "UserId" });
+            DropIndex("dbo.Reservas", new[] { "idCarro" });
+            DropIndex("dbo.Verificacaos", new[] { "Empresa_idEmpresa" });
+            DropIndex("dbo.Verificacaos", new[] { "idCategoria" });
             DropIndex("dbo.Carroes", new[] { "idEmpresa" });
             DropIndex("dbo.Carroes", new[] { "idCategoria" });
+            DropTable("dbo.AspNetRoles");
+            DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
-            DropTable("dbo.AspNetUserRoles");
-            DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Reservas");
             DropTable("dbo.CheckboxListItems");
+            DropTable("dbo.Verificacaos");
             DropTable("dbo.Empresas");
             DropTable("dbo.Categorias");
             DropTable("dbo.Carroes");

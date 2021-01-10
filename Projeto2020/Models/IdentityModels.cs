@@ -35,6 +35,8 @@ namespace Projeto2020.Models
         public virtual DbSet<Empresa> Empresas { get; set; }
         public virtual DbSet<Categoria> Categorias { get; set; }
         public virtual DbSet<Reserva> Reservas { get; set; }
+
+        public virtual DbSet<Verificacao> Verificacaos { get; set; }
         public virtual DbSet<CheckboxListItem> CheckboxListItems { get; set; }
 
         public static ApplicationDbContext Create()

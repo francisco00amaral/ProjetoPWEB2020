@@ -1,0 +1,76 @@
+﻿@model List<Projeto2020.Models.Verificacao>
+
+@{
+    ViewBag.Title = "Gestão de verificações";
+}
+
+<style>
+    table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .table thead tr {
+        background-color: #009879   ;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .parent-style-one {
+        font-family: helvetica;
+        text-decoration: none;
+    }
+
+    .table td {
+        padding: 12px 15px;
+    }
+
+    .table th {
+        padding: 12px 15px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h2>Gestão de verificações</h2>
+
+<p>
+    @Html.ActionLink("Nova verificação", "NovaVerificacao")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Verificação
+            </th>
+            <th>
+                Categoria
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Categoria.nome)
+    </td>
+    <td>
+        @Html.ActionLink("Nova verificação", "NovaVerificacao")
+    </td>
+</tr>
+
+    }
+
+</table>

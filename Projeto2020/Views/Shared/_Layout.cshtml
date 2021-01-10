@@ -49,13 +49,10 @@
 
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Empresa"))
                     {
-                        <li>@Html.ActionLink("Os meus funcionarios", "DetalhesFunc", "Account")</li>
-                        <li>@Html.ActionLink("Registar Funcionarios", "RegisterFuncionarios", "Account")</li>
-                        <li>@Html.ActionLink("Os meus veiculos", "IndexEmpresa", "Carros")</li>
+                        <li>@Html.ActionLink("Funcionarios", "DetalhesFunc", "Account")</li>
+                        <li>@Html.ActionLink("Verificações da empresa", "MyVerificacao", "Empresa")</li>
+                        <li>@Html.ActionLink("Veiculos da empresa", "IndexEmpresa", "Carros")</li>
                     }
-
-
-
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

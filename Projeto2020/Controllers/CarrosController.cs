@@ -105,7 +105,8 @@ namespace Projeto2020.Controllers
                              where l.Id == currentUserId
                              select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
             // seleciona-me todas as reservas por confirmar(is entregue == false)            if (ModelState.IsValid)
-            carro.idEmpresa = (int)empresaId;   
+            carro.idEmpresa = (int)empresaId;
+            ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome", carro.idCategoria);
             {
                 db.Carros.Add(carro);
                 db.SaveChanges();
@@ -116,7 +117,7 @@ namespace Projeto2020.Controllers
                 return RedirectToAction("Index");
             }
 
-            /* ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome", carro.idCategoria);
+           /*
             ViewBag.idEmpresa = new SelectList(db.Empresas, "idEmpresa", "nome", carro.idEmpresa); */
             // return View(carro);
         }

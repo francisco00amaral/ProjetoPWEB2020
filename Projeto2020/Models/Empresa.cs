@@ -16,6 +16,12 @@ namespace Projeto2020.Models
         public string nome { get; set; }
 
         //cada empresa tem uma lista de verificacoes diferentes
-        public List<CheckboxListItem> Verificacoes { get; set; }
+        public List<Verificacao> Verificacoes { get; set; }
+
+        public Empresa()
+        {
+            Verificacoes = new List<Verificacao>();
+        }
+
     }
 }   

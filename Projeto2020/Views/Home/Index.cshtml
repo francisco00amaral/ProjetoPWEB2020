@@ -9,13 +9,6 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Ver catálogo de produtos</h2>
-        <p>
-            Ver os nossos veiculos e preçários!
-        </p>
-        <input type="button" class="btn btn-info" value="Ver catálogo »" onclick="location.href = '@Url.Action("Index", "Carros")'" />
-    </div>
     @if (!(User.Identity.IsAuthenticated))
     {
         <div class="col-md-4">
@@ -27,17 +20,34 @@
     @if (!(User.Identity.IsAuthenticated) || User.IsInRole("Cliente"))
     {
         <div class="col-md-4">
+            <h2>Ver catálogo de produtos</h2>
+            <p>
+                Ver os nossos veiculos e preçários!
+            </p>
+            <input type="button" class="btn btn-info" value="Ver catálogo »" onclick="location.href = '@Url.Action("Index", "Carros")'" />
+        </div>
+        <div class="col-md-4">
             <h2>Registar como empresa de Renting</h2>
             <p>Pode registar aqui a sua empresa de renting!</p>
             <input type="button" class="btn btn-info" value="Registar como empresa »" onclick="location.href = '@Url.Action("Register", "Account", new { id=2})'" />
         </div>
     }
     @if (User.IsInRole("Empresa"))
-    {   
+    {
         <div class="col-md-4">
-            <h2>Registe os seus funcionários</h2>
-            <p>Pode registar aqui os funcionários da sua empresa!</p>
-            <input type="button" class="btn btn-info" value="Registar como empresa »" onclick="location.href = '@Url.Action("RegisterFuncionarios", "Account", new { id=2})'" />
+            <h2>Gestão do catalógo de veículos</h2>
+            <p>Pode ver aqui os veículos da empresa e adicionar novos!</p>
+            <input type="button" class="btn btn-info" value="Ver veículos »" onclick="location.href = '@Url.Action("IndexEmpresa", "Carros")'" />
+        </div>
+        <div class="col-md-4">
+            <h2>Verificações a veiculos</h2>
+            <p>Aqui pode adicionar verificações novas e ver as suas verificações a cada tipo de viatura!</p>
+            <input type="button" class="btn btn-info" value="Ver verificações »" onclick="location.href = '@Url.Action("MyVerificacao", "Empresa")'" />
+        </div>
+        <div class="col-md-4">
+            <h2>Ver detalhes sobre a sua empresa</h2>
+            <p>Pode fazer a gestão dos administradores e funcionários da sua empresa</p>
+            <input type="button" class="btn btn-info" value="Ver detalhes da empresa »" onclick="location.href = '@Url.Action("DetalhesFunc", "Account")'" />
         </div>
     }
 </div>

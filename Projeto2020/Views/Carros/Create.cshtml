@@ -1,17 +1,17 @@
 ﻿@model Projeto2020.Models.Carro
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Novo veículo";
 }
 
-<h2>Create</h2>
+<h2>Adicionar novo veículo</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Carro</h4>
+        <h4>Veículo para alugar</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -55,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.idCategoria, "idCategoria", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.idCategoria, "Categoria", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("idCategoria", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.idCategoria, "", new { @class = "text-danger" })

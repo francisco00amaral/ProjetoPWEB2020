@@ -172,6 +172,7 @@
     <Compile Include="Controllers\CarrosController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\FuncionariosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InitAdminController.cs" />
@@ -181,41 +182,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101071509416_Tudo.cs" />
-    <Compile Include="Migrations\202101071509416_Tudo.Designer.cs">
-      <DependentUpon>202101071509416_Tudo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101071512337_Reserva.cs" />
-    <Compile Include="Migrations\202101071512337_Reserva.Designer.cs">
-      <DependentUpon>202101071512337_Reserva.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101071722472_virtuals.cs" />
-    <Compile Include="Migrations\202101071722472_virtuals.Designer.cs">
-      <DependentUpon>202101071722472_virtuals.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101072352376_ReservaComMaisCampos.cs" />
-    <Compile Include="Migrations\202101072352376_ReservaComMaisCampos.Designer.cs">
-      <DependentUpon>202101072352376_ReservaComMaisCampos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101080138074_ReservaComMaisCamposs.cs" />
-    <Compile Include="Migrations\202101080138074_ReservaComMaisCamposs.Designer.cs">
-      <DependentUpon>202101080138074_ReservaComMaisCamposs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101082329481_ReservaComMaisUmCampo.cs" />
-    <Compile Include="Migrations\202101082329481_ReservaComMaisUmCampo.Designer.cs">
-      <DependentUpon>202101082329481_ReservaComMaisUmCampo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101082340046_ReservaComMaisUmCampo1.cs" />
-    <Compile Include="Migrations\202101082340046_ReservaComMaisUmCampo1.Designer.cs">
-      <DependentUpon>202101082340046_ReservaComMaisUmCampo1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202101090106446_campoNoCarro.cs" />
-    <Compile Include="Migrations\202101090106446_campoNoCarro.Designer.cs">
-      <DependentUpon>202101090106446_campoNoCarro.cs</DependentUpon>
+    <Compile Include="Migrations\202101092308339_tudo.cs" />
+    <Compile Include="Migrations\202101092308339_tudo.Designer.cs">
+      <DependentUpon>202101092308339_tudo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CarroViewModel.cs" />
+    <Compile Include="Models\Managers.cs" />
     <Compile Include="Models\RecebeCarroVM.cs" />
     <Compile Include="Models\Reserva.cs" />
     <Compile Include="Models\ReservaViewModel.cs" />
@@ -231,10 +205,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\A_Minha_DB.mdf" />
-    <Content Include="App_Data\A_Minha_DB_log.ldf">
-      <DependentUpon>A_Minha_DB.mdf</DependentUpon>
-    </Content>
     <Content Include="assets\img\wallhaven-295557.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -334,6 +304,8 @@
     <Content Include="Views\Funcionarios\ReservasPorReceber.cshtml" />
     <Content Include="Views\Funcionarios\AreaFunc.cshtml" />
     <Content Include="Views\Funcionarios\Recebe.cshtml" />
+    <Content Include="Views\Empresa\NovaVerificacao.cshtml" />
+    <Content Include="Views\Empresa\MyVerificacao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -348,31 +320,12 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101071509416_Tudo.resx">
-      <DependentUpon>202101071509416_Tudo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101071512337_Reserva.resx">
-      <DependentUpon>202101071512337_Reserva.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101071722472_virtuals.resx">
-      <DependentUpon>202101071722472_virtuals.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101072352376_ReservaComMaisCampos.resx">
-      <DependentUpon>202101072352376_ReservaComMaisCampos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101080138074_ReservaComMaisCamposs.resx">
-      <DependentUpon>202101080138074_ReservaComMaisCamposs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101082329481_ReservaComMaisUmCampo.resx">
-      <DependentUpon>202101082329481_ReservaComMaisUmCampo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101082340046_ReservaComMaisUmCampo1.resx">
-      <DependentUpon>202101082340046_ReservaComMaisUmCampo1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202101090106446_campoNoCarro.resx">
-      <DependentUpon>202101090106446_campoNoCarro.cs</DependentUpon>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202101092308339_tudo.resx">
+      <DependentUpon>202101092308339_tudo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
