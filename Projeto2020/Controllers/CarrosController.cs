@@ -38,7 +38,7 @@ namespace Projeto2020.Controllers
 
             foreach (var a in Reservas.ToList())
             {
-                if (a.FimReserva < DateTime.Now && a.isConcluido == false)
+                if (a.FimReserva < DateTime.Now && a.isConcluido == false && a.isRecebido == false)
                 {
                     //Remove o aluguer que terminou
                     reserva = db.Reservas.Find(a.idReserva);

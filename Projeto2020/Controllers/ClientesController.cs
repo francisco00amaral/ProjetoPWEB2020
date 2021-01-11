@@ -98,7 +98,7 @@ namespace Projeto2020.Controllers
             var currentUserID = User.Identity.GetUserId();
             // arranja a reserva associada
             var reserva = (from l in db.Reservas
-                           where l.idCarro == model.CarroId
+                           where l.idCarro == model.CarroId && l.isRecebido == false
                            select l.idReserva).First();
             var encontrado = db.Reservas.Find(reserva);
             encontrado.isRecebido = true;

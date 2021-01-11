@@ -79,7 +79,7 @@ namespace Projeto2020.Controllers
             carro.km = model.km;
             // encontrar a reserva e meter o isEntregue a true;
             var reserva = (from l in db.Reservas
-                           where l.idCarro == model.CarroId && l.isConcluido == false
+                           where l.idCarro == model.CarroId && l.isConcluido == false && l.isEntregue == false
                            select l.idReserva).First();
 
             var encontrado = db.Reservas.Find(reserva);
@@ -149,7 +149,7 @@ namespace Projeto2020.Controllers
 
             // encontrar a reserva e meter o isEntregue a true;
             var reserva = (from l in db.Reservas
-                           where l.idCarro == model.CarroId
+                           where l.idCarro == model.CarroId && l.isConcluido == false
                            select l.idReserva).First();
             
             carro.reservado = false;
@@ -205,7 +205,7 @@ namespace Projeto2020.Controllers
                              select l.idEmpresa).First(); // selecionar o id da empresa que corresponde com este user
             // seleciona-me todas as reservas por confirmar(is entregue == false)
 
-            var reserva = db.Reservas.Where(x => x.Carro.idEmpresa == empresaId).Where(l => l.isEntregue == true && l.isRecebido == true && l.isConcluido == false && l.FimReserva < DateTime.Now).ToList();
+            var reserva = db.Reservas.Where(x => x.Carro.idEmpresa == empresaId).Where(l => l.isEntregue == true && l.isRecebido == true && l.isConcluido == false).ToList();
             return View(reserva);
         }
         // reservas recebidas e que ja foram confirmadas pelo funcionario
