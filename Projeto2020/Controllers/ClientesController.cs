@@ -23,6 +23,11 @@ namespace Projeto2020.Controllers
         //get
         public ActionResult Reservar(int? id)
         {
+            var encontra = db.Carros.Find(id);
+            if (encontra.reservado == true)
+            {
+                return RedirectToAction("Index", "Carros");
+            }
 
             if (id != null)
             {
@@ -49,7 +54,7 @@ namespace Projeto2020.Controllers
                              where l.idCarro == model.CarroId
                              select l.preco).First();
             
-            var totalPreco = (model.dataPretendidaFim - model.dataPretendidaInicio).TotalMinutes;
+            var totalPreco = (model.dataPretendidaFim - model.dataPretendidaInicio).TotalDays;
             var total = custo * totalPreco;
 
                 Reserva reserva = new Reserva
@@ -104,7 +109,7 @@ namespace Projeto2020.Controllers
                          select l.preco).First();
 
             // OCMPOR ISTO
-            var totalPreco = (DateTime.Now - model.dataPretendidaInicio).TotalMinutes;
+            var totalPreco = (DateTime.Now - model.dataPretendidaInicio).TotalDays;
             var total = custo * totalPreco;
             ViewBag.Preco = total;
 
@@ -129,7 +134,7 @@ namespace Projeto2020.Controllers
         {
             string currentUserId = User.Identity.GetUserId();
 
-            var reserva = db.Reservas.Where(x => x.UserId == currentUserId).Where(l => l.isEntregue == true).ToList();
+            var reserva = db.Reservas.Where(x => x.UserId == currentUserId).Where(l => l.isEntregue == true && l.isRecebido == false).ToList();
             return View(reserva);
         }
         // todas as reservas feitas pelo user ainda nao confirmadas

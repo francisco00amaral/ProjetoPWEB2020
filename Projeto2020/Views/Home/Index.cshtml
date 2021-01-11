@@ -2,11 +2,13 @@
     ViewBag.Title = "Home Page";
 }
 
+@if (User.IsInRole("Cliente") || !(User.Identity.IsAuthenticated)) { 
 <div class="jumbotron">
     <h1>Viseu Car eRenting</h1>
     <p class="lead">Viseu car eRenting is one of the first available options of renting cars in the district of Viseu, just one click away!</p>
     <p><a href='@Url.Action("Index", "Carros")' class="btn btn-primary btn-lg">Our catalog&raquo;</a></p>
 </div>
+}
 
 <div class="row">
     @if (!(User.Identity.IsAuthenticated))
@@ -34,6 +36,11 @@
     }
     @if (User.IsInRole("Empresa"))
     {
+        <div class="jumbotron">
+            <h1>Ver detalhes sobre a sua empresa</h1>
+            <p class="lead">Pode fazer a gestão dos administradores e funcionários da sua empresa</p>
+            <p><a href='@Url.Action("DetalhesFunc", "Account")' class="btn btn-primary btn-lg">Área de gestão da empresa&raquo;</a></p>
+        </div>
         <div class="col-md-4">
             <h2>Gestão do catalógo de veículos</h2>
             <p>Pode ver aqui os veículos da empresa e adicionar novos!</p>
@@ -44,40 +51,31 @@
             <p>Aqui pode adicionar verificações novas e ver as suas verificações a cada tipo de viatura!</p>
             <input type="button" class="btn btn-info" value="Ver verificações »" onclick="location.href = '@Url.Action("MyVerificacao", "Empresa")'" />
         </div>
+    }
+    @if (User.IsInRole("Funcionário"))
+    {
+        <div class="jumbotron">
+            <h1>Área do funcionário</h1>
+            <p class="lead">Aqui pode ver gerenciar as reservas e ter acesso às suas operações!</p>
+            <p><a href='@Url.Action("AreaFunc", "Funcionarios")' class="btn btn-primary btn-lg">Área do funcionário&raquo;</a></p>
+        </div>
         <div class="col-md-4">
-            <h2>Ver detalhes sobre a sua empresa</h2>
-            <p>Pode fazer a gestão dos administradores e funcionários da sua empresa</p>
-            <input type="button" class="btn btn-info" value="Ver detalhes da empresa »" onclick="location.href = '@Url.Action("DetalhesFunc", "Account")'" />
+            <h2>Gestão do catalógo de veículos</h2>
+            <p>Pode ver aqui os veículos da empresa!</p>
+            <input type="button" class="btn btn-info" value="Ver veículos »" onclick="location.href = '@Url.Action("IndexEmpresa", "Carros")'" />
+        </div>
+    }
+    @if (User.IsInRole("Admin"))
+    {
+        <div class="jumbotron">
+            <h1>Ver área de administração</h1>
+            <p class="lead">Pode fazer acesso às operações do administrador!</p>
+            <p><a href='@Url.Action("adminarea", "Home")' class="btn btn-primary btn-lg">Área do admin&raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Gestão de categorias de veículos</h2>
+            <p>Pode ver aqui as categorias permitidas de veículos no website e adicionar novas!</p>
+            <input type="button" class="btn btn-info" value="Ver categorias »" onclick="location.href = '@Url.Action("Index", "Categorias")'" />
         </div>
     }
 </div>
-
-@*
-    <div class="about_us">
-        <h2>Sobre nós</h2>
-        <div class="foto_francisco">
-            <img src="~/assets/img/fotominha.jpg" style=";
-            float: left;
-            width: 200px;
-            height: 200px;
-            border-radius: 150px;
-            -webkit-border-radius: 150px;
-            -moz-border-radius: 150px;"
-                 alt="fotoxico" />
-        </div>
-        <div class="foto_miguel">
-            <img src="~/assets/img/fotomiguel.jpg" style="
-             float: right;
-            width: 200px;
-            height: 200px;
-            border-radius: 150px;
-            -webkit-border-radius: 150px;
-            -moz-border-radius: 150px;"
-            alt="fotomiguel" />
-        </div>
-        <div class="texto_centro">
-            <h3 style="color:#333;text-align:center;text-transform:uppercase">isto e um teste</h3>
-        </div>
-
-    </div>
-*@

@@ -58,7 +58,7 @@ namespace Projeto2020.Controllers
         }
 
 
-        [Authorize(Roles ="Empresa")]
+        [Authorize(Roles ="Empresa,Funcionário")]
         public ActionResult IndexEmpresa()
         {
             string currentUserID = User.Identity.GetUserId();
