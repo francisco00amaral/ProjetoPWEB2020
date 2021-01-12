@@ -1,0 +1,78 @@
+﻿@model Projeto2020.Models.Reserva
+
+@{
+    ViewBag.Title = "Detalhes da reserva";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Reserva</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplicationUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplicationUser.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carro.Marca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carro.Marca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Carro.Modelo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carro.Modelo)
+        </dd>
+
+        <dt>
+            <p>Kilometros aquando entregue: </p>
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Carro.km)
+        </dd>
+
+        <dt>
+            <p>Depósito quando entregue:</p>
+        <dd>
+            @Html.DisplayFor(model => model.Carro.deposito)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InicioReserva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InicioReserva)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FimReserva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FimReserva)
+        </dd>
+        <dt>
+            <p>Imagem do defeito:</p>
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.imagemDefeito)" />
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Voltar para a área de funcionário", "AreaFunc")
+</p>

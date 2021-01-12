@@ -82,6 +82,7 @@ namespace Projeto2020.Migrations
                         isEntregue = c.Boolean(nullable: false),
                         isConcluido = c.Boolean(nullable: false),
                         isRecebido = c.Boolean(nullable: false),
+                        imagemDefeito = c.String(),
                         UserId = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.idReserva)

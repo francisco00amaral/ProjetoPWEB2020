@@ -4,12 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
 namespace Projeto2020.Controllers
 {
-    [Authorize(Roles ="Funcionário")]
     public class FuncionariosController : Controller
     {
 
@@ -132,12 +132,12 @@ namespace Projeto2020.Controllers
                 return View(model);
             }
 
-            return View();
+            return RedirectToAction("ReservasPorReceber", "Funcionarios");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Recebe(CarroViewModel model)
+        public ActionResult Recebe(RecebeCarroVM model)
         {
             var currentUserID = User.Identity.GetUserId();
             var carro = db.Carros.Find(model.CarroId);
@@ -151,19 +151,20 @@ namespace Projeto2020.Controllers
             var reserva = (from l in db.Reservas
                            where l.idCarro == model.CarroId && l.isConcluido == false
                            select l.idReserva).First();
-            
+
             carro.reservado = false;
 
             var encontrado = db.Reservas.Find(reserva);
             encontrado.isRecebido = true;
             encontrado.isConcluido = true;
+            encontrado.imagemDefeito = model.imagem;
 
             db.Entry(carro).State = EntityState.Modified;
             db.Entry(encontrado).State = EntityState.Modified;
 
             db.SaveChanges();
 
-            return RedirectToAction("ReservasPorConfirmar", "Funcionarios");
+            return RedirectToAction("ReservasRecebidas", "Funcionarios");
         }
 
         public ActionResult ReservasConfirmadas()
@@ -220,6 +221,22 @@ namespace Projeto2020.Controllers
             // seleciona-me todas as reservas por confirmar(is entregue == false)
 
             var reserva = db.Reservas.Where(x => x.Carro.idEmpresa == empresaId).Where(l => l.isEntregue == true && l.isRecebido == true && l.isConcluido == true).ToList();
+            return View(reserva);
+        }
+
+        // GET: Funcioarios/Details/5
+
+        public ActionResult DetalhesConfirmadas(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Reserva reserva = db.Reservas.Find(id);
+            if (reserva == null)
+            {
+                return HttpNotFound();
+            }
             return View(reserva);
         }
     }

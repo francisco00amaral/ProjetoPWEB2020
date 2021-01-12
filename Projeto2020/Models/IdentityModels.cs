@@ -25,7 +25,7 @@ namespace Projeto2020.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
        public ApplicationDbContext()
-            : base("A_Minha_DB", throwIfV1Schema: false)
+            : base("AMinhaDb", throwIfV1Schema: false)
         {
           
         }

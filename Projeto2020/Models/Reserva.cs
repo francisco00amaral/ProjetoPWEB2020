@@ -27,6 +27,7 @@ namespace Projeto2020.Models
         public bool isConcluido { get; set; }
         public bool isRecebido { get; set; }
 
+        public string imagemDefeito { get; set; }
         public virtual Carro Carro { get; set; }
 
         // 1 reserva ta associado a 1 user

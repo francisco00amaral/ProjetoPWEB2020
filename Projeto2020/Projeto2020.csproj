@@ -182,9 +182,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101092308339_tudo.cs" />
-    <Compile Include="Migrations\202101092308339_tudo.Designer.cs">
-      <DependentUpon>202101092308339_tudo.cs</DependentUpon>
+    <Compile Include="Migrations\202101122250523_tudo.cs" />
+    <Compile Include="Migrations\202101122250523_tudo.Designer.cs">
+      <DependentUpon>202101122250523_tudo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -306,6 +306,7 @@
     <Content Include="Views\Empresa\NovaVerificacao.cshtml" />
     <Content Include="Views\Empresa\MyVerificacao.cshtml" />
     <Content Include="Views\Funcionarios\Recebe.cshtml" />
+    <Content Include="Views\Funcionarios\DetalhesConfirmadas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -324,8 +325,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101092308339_tudo.resx">
-      <DependentUpon>202101092308339_tudo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101122250523_tudo.resx">
+      <DependentUpon>202101122250523_tudo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

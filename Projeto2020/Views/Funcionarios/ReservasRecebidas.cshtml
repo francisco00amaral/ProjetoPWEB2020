@@ -70,40 +70,46 @@
             <th>
                 @Html.DisplayNameFor(model => model.CustoPrevisto)
             </th>
+            <th>
+
+            </th>
     </thead>
 
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Carro.Marca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Carro.Modelo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Carro.Categoria.nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.InicioReserva)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FimReserva)
-            </td>
-            <th>
-                @Html.DisplayFor(modelItem => item.Carro.km)
-            </th>
-            <th>
-                @Html.DisplayFor(modelItem => item.Carro.deposito)
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustoPrevisto)
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.ApplicationUser.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Carro.Marca)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Carro.Modelo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Carro.Categoria.nome)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.InicioReserva)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FimReserva)
+    </td>
+    <th>
+        @Html.DisplayFor(modelItem => item.Carro.km)
+    </th>
+    <th>
+        @Html.DisplayFor(modelItem => item.Carro.deposito)
+    </th>
+    <td>
+        @Html.DisplayFor(modelItem => item.CustoPrevisto)
+    </td>
+    <td>
+        @Html.ActionLink("Detalhes da entrega", "DetalhesConfirmadas", "Funcionarios", new { id = item.idReserva }, null)
+    </td>
+</tr>
     }
 
 </table>
