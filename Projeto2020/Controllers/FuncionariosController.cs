@@ -115,7 +115,7 @@ namespace Projeto2020.Controllers
                 // da-me a lista de verificacoes para esta categoria
                 var lista = (from l in db.Empresas
                              where l.idEmpresa == empresaId
-                             select l.Verificacoes).SingleOrDefault();
+                             select l.Verificacoes.Where(f => f.Categoria.idCategoria == categoria)).SingleOrDefault();
 
                 var checkBoxListItems = new List<CheckboxListItem>();
 

@@ -285,7 +285,7 @@
     <Content Include="Views\Carros\Details.cshtml" />
     <Content Include="Views\Carros\Edit.cshtml" />
     <Content Include="Views\Carros\Index.cshtml" />
-    <Content Include="Views\Shared\CheckBoxListItem.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CheckBoxListItem.cshtml" />
     <Content Include="Views\UsersAdmin\Suspend.cshtml" />
     <Content Include="Views\Carros\IndexEmpresa.cshtml" />
     <Content Include="Views\Account\RegisterEmpresa.cshtml" />
