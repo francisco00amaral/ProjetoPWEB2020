@@ -158,33 +158,6 @@ namespace Projeto2020.Controllers
             return View(carro);
         }
 
-        // GET: Carros/Delete/5
-        [Authorize(Roles = "Empresa")]
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Carro carro = db.Carros.Find(id);
-            if (carro == null)
-            {
-                return HttpNotFound();
-            }
-            return View(carro);
-        }
-
-        // POST: Carros/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Carro carro = db.Carros.Find(id);
-            db.Carros.Remove(carro);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

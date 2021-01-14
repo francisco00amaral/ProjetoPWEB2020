@@ -276,12 +276,10 @@
     <Content Include="Views\Account\DetalhesFunc.cshtml" />
     <Content Include="Views\Home\adminarea.cshtml" />
     <Content Include="Views\Categorias\Create.cshtml" />
-    <Content Include="Views\Categorias\Delete.cshtml" />
     <Content Include="Views\Categorias\Details.cshtml" />
     <Content Include="Views\Categorias\Edit.cshtml" />
     <Content Include="Views\Categorias\Index.cshtml" />
     <Content Include="Views\Carros\Create.cshtml" />
-    <Content Include="Views\Carros\Delete.cshtml" />
     <Content Include="Views\Carros\Details.cshtml" />
     <Content Include="Views\Carros\Edit.cshtml" />
     <Content Include="Views\Carros\Index.cshtml" />

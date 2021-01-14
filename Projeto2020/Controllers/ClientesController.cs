@@ -54,8 +54,8 @@ namespace Projeto2020.Controllers
                              where l.idCarro == model.CarroId
                              select l.preco).First();
             
-            var totalPreco = (model.dataPretendidaFim - model.dataPretendidaInicio).TotalDays;
-            var total = custo * totalPreco;
+            var totalDias = (model.dataPretendidaFim - model.dataPretendidaInicio).TotalDays;
+            var total = custo * totalDias;
 
                 Reserva reserva = new Reserva
                 {
@@ -66,7 +66,7 @@ namespace Projeto2020.Controllers
                     isEntregue = false,
                     isConcluido = false,
                     isRecebido = false,
-                    CustoPrevisto = ((decimal)totalPreco),
+                    CustoPrevisto = ((decimal)totalDias),
                 };
             db.Entry(carro).State = EntityState.Modified;
             db.Reservas.Add(reserva);
