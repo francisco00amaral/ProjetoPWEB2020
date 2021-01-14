@@ -182,9 +182,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101122250523_tudo.cs" />
-    <Compile Include="Migrations\202101122250523_tudo.Designer.cs">
-      <DependentUpon>202101122250523_tudo.cs</DependentUpon>
+    <Compile Include="Migrations\202101141736468_tudo.cs" />
+    <Compile Include="Migrations\202101141736468_tudo.Designer.cs">
+      <DependentUpon>202101141736468_tudo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -193,6 +193,7 @@
     <Compile Include="Models\RecebeCarroVM.cs" />
     <Compile Include="Models\Reserva.cs" />
     <Compile Include="Models\ReservaViewModel.cs" />
+    <Compile Include="Validacao\Positivo.cs" />
     <Compile Include="ViewModels\AddVerificacao.cs" />
     <Compile Include="Models\Carro.cs" />
     <Compile Include="Models\Categoria.cs" />
@@ -323,8 +324,8 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101122250523_tudo.resx">
-      <DependentUpon>202101122250523_tudo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101141736468_tudo.resx">
+      <DependentUpon>202101141736468_tudo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

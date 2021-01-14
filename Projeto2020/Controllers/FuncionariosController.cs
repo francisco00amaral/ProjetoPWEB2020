@@ -71,6 +71,11 @@ namespace Projeto2020.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ConfirmaReserva(CarroViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             var currentUserID = User.Identity.GetUserId();
             var carro = db.Carros.Find(model.CarroId);
 
@@ -139,6 +144,10 @@ namespace Projeto2020.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Recebe(RecebeCarroVM model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
             var currentUserID = User.Identity.GetUserId();
             var carro = db.Carros.Find(model.CarroId);
 

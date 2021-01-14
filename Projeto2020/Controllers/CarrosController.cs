@@ -107,20 +107,23 @@ namespace Projeto2020.Controllers
             // seleciona-me todas as reservas por confirmar(is entregue == false)            if (ModelState.IsValid)
             carro.idEmpresa = (int)empresaId;
             ViewBag.idCategoria = new SelectList(db.Categorias, "idCategoria", "nome", carro.idCategoria);
-            {
-                db.Carros.Add(carro);
-                db.SaveChanges();
-                if(id == 1)
+                if (ModelState.IsValid)
                 {
-                    return RedirectToAction("IndexEmpresa");
-                }
-                return RedirectToAction("Index");
-            }
 
-           /*
-            ViewBag.idEmpresa = new SelectList(db.Empresas, "idEmpresa", "nome", carro.idEmpresa); */
-            // return View(carro);
+                    db.Carros.Add(carro);
+                    db.SaveChanges();
+                    if (id == 1)
+                    {
+                        return RedirectToAction("IndexEmpresa");
+                    }
+                    return RedirectToAction("Index");
+                }
+            ViewBag.idEmpresa = new SelectList(db.Empresas, "idEmpresa", "nome", carro.idEmpresa); 
+            return View(carro);
         }
+
+           
+            
 
         // GET: Carros/Edit/5
         [Authorize(Roles = "Empresa")]

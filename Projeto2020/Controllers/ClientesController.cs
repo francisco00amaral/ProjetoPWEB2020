@@ -44,8 +44,12 @@ namespace Projeto2020.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Reservar(ReservaViewModel model)
         {
-                // arranja o id do user
-                var currentUserID = User.Identity.GetUserId();
+            if (!(ModelState.IsValid))
+            {
+                return View(model);
+            }
+            // arranja o id do user
+            var currentUserID = User.Identity.GetUserId();
 
                 var carro = db.Carros.Find(model.CarroId);
                 carro.reservado = true;
@@ -53,7 +57,7 @@ namespace Projeto2020.Controllers
             var custo = (from l in db.Carros
                              where l.idCarro == model.CarroId
                              select l.preco).First();
-            
+
             var totalDias = (model.dataPretendidaFim - model.dataPretendidaInicio).TotalDays;
             var total = custo * totalDias;
 
@@ -109,7 +113,7 @@ namespace Projeto2020.Controllers
                          select l.preco).First();
 
             // OCMPOR ISTO
-            var totalPreco = (DateTime.Now - model.dataPretendidaInicio).TotalDays;
+            var totalPreco = (DateTime.Today - model.dataPretendidaInicio).TotalDays;
             var total = custo * totalPreco;
             ViewBag.Preco = total;
 

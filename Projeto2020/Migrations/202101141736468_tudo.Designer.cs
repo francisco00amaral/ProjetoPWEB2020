@@ -13,7 +13,7 @@ namespace Projeto2020.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202101122250523_tudo"; }
+            get { return "202101141736468_tudo"; }
         }
         
         string IMigrationMetadata.Source

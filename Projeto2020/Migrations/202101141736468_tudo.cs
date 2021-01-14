@@ -12,11 +12,11 @@ namespace Projeto2020.Migrations
                 c => new
                     {
                         idCarro = c.Int(nullable: false, identity: true),
-                        Marca = c.String(),
-                        Modelo = c.String(),
-                        preco = c.Single(nullable: false),
-                        km = c.Int(nullable: false),
-                        deposito = c.Int(nullable: false),
+                        Marca = c.String(nullable: false),
+                        Modelo = c.String(nullable: false),
+                        preco = c.Double(nullable: false),
+                        km = c.Double(nullable: false),
+                        deposito = c.Double(nullable: false),
                         reservado = c.Boolean(nullable: false),
                         idCategoria = c.Int(nullable: false),
                         idEmpresa = c.Int(nullable: false),

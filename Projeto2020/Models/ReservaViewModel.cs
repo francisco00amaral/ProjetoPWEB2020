@@ -32,7 +32,7 @@ namespace Projeto2020.Models
             //Verifica se a horqa do fim é antes da hora do inicio
             if (dataPretendidaInicio > dataPretendidaFim)
             {
-                yield return new ValidationResult("Data do fim deve ser mais tarde ou igual à data do início.");
+                yield return new ValidationResult("Data do fim deve ser superior ou igual à data do início.");
             }
         }
     }

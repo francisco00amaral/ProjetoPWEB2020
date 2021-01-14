@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Projeto2020.Validacao;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,21 +12,25 @@ namespace Projeto2020.Models
         [Key]
         public int idCarro { get; set; }
 
-        public string Marca { get; set; }   
+        [Required]
+        public string Marca { get; set; }
 
+        [Required]
         public string Modelo { get; set; }
 
         [Display(Name="Preço por dia")]
-        public float preco { get; set; }
+        [Range(1, double.MaxValue, ErrorMessage = "O preço por dia deve ser positivo")]
+
+        public double preco { get; set; }
 
         [Required]
         [Display(Name = "Kilometros do carro")]
-        [Range(1, 9999, ErrorMessage = "Km não válidos")]
-        public int km { get; set; }
+        [Range(1, double.MaxValue, ErrorMessage = "Os kilómetros devem ser positivos")]
+        public double km { get; set; }
 
         [Display(Name = "Depósito")]
-        [Range(1, 9999, ErrorMessage = "Depósito não valido")]
-        public int deposito { get; set; }
+        [Range(1, double.MaxValue, ErrorMessage = "O depósito deve ser positivo")]
+        public double deposito { get; set; }
 
         public bool reservado { get; set; }
 
