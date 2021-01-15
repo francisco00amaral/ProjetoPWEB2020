@@ -15,7 +15,7 @@ namespace Projeto2020.Models
         [Display(Name = "Empresa")]
         public string nome { get; set; }
 
-        //cada empresa tem uma lista de verificacoes diferentes
+        //cada empresa tem uma lista de verificacoes diferentes 
         public List<Verificacao> Verificacoes { get; set; }
 
         public Empresa()

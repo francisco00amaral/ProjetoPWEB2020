@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            <p>Kilometros aquando entregue: </p>
+            Kilometros aquando entregue: 
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            <p>Depósito quando entregue:</p>
+            Depósito quando entregue:
         <dd>
             @Html.DisplayFor(model => model.Carro.deposito)
         </dd>
@@ -64,13 +64,11 @@
             @Html.DisplayFor(model => model.FimReserva)
         </dd>
         <dt>
-            <p>Imagem do defeito:</p>
+            Imagem do defeito:
         </dt>
-
         <dd>
-            <img src="@Url.Content(Model.imagemDefeito)" />
+                <img src="/uploads/@Model.imagemDefeito" class="img-thumbnail" width="400" height="300" />
         </dd>
-
     </dl>
 </div>
 <p>

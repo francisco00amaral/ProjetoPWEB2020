@@ -3,6 +3,7 @@ using Projeto2020.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -55,6 +56,11 @@ namespace Projeto2020.Controllers
 
         public ActionResult ConfirmaReserva(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             if (id != null)
             {
                 CarroViewModel model = new CarroViewModel()
@@ -98,9 +104,13 @@ namespace Projeto2020.Controllers
             return RedirectToAction("ReservasPorConfirmar", "Funcionarios");
         }
 
-
+        // get
         public ActionResult Recebe(int? id)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             if (id != null)
             {
                 RecebeCarroVM model = new RecebeCarroVM()
@@ -142,7 +152,7 @@ namespace Projeto2020.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Recebe(RecebeCarroVM model)
+        public ActionResult Recebe(RecebeCarroVM model, IEnumerable<HttpPostedFileBase> files)
         {
             if (!ModelState.IsValid)
             {
@@ -164,9 +174,20 @@ namespace Projeto2020.Controllers
             carro.reservado = false;
 
             var encontrado = db.Reservas.Find(reserva);
+            string nomeDoFicheiroAguardar = "P_" + encontrado.idReserva.ToString();
+
+            foreach (var file in files)
+            {
+                if (file != null && file.ContentLength > 0)
+                {
+                    nomeDoFicheiroAguardar += Path.GetExtension(file.FileName);
+                    file.SaveAs(Path.Combine(Server.MapPath("~/uploads"), nomeDoFicheiroAguardar));
+                    encontrado.imagemDefeito = nomeDoFicheiroAguardar;
+
+                }
+            }
             encontrado.isRecebido = true;
             encontrado.isConcluido = true;
-            encontrado.imagemDefeito = model.imagem;
 
             db.Entry(carro).State = EntityState.Modified;
             db.Entry(encontrado).State = EntityState.Modified;
