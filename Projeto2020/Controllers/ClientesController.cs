@@ -59,7 +59,7 @@ namespace Projeto2020.Controllers
                 carro.reservado = true;
             // arranja o custo do carro
             var custo = (from l in db.Carros
-                             where l.idCarro == model.CarroId
+                             where l.idCarro == model.CarroId   
                              select l.preco).First();
 
             var totalDias = (model.dataPretendidaFim - model.dataPretendidaInicio).TotalDays;
@@ -74,7 +74,7 @@ namespace Projeto2020.Controllers
                     isEntregue = false,
                     isConcluido = false,
                     isRecebido = false,
-                    CustoPrevisto = ((decimal)totalDias),
+                    CustoPrevisto = ((decimal)total),
                 };
             db.Entry(carro).State = EntityState.Modified;
             db.Reservas.Add(reserva);
@@ -117,10 +117,11 @@ namespace Projeto2020.Controllers
                          select l.preco).First();
 
             // OCMPOR ISTO
-            var totalPreco = (DateTime.Today - model.dataPretendidaInicio).TotalDays;
+            var totalPreco = DateTime.Now.Subtract(encontrado.InicioReserva).TotalDays;
             var total = custo * totalPreco;
             ViewBag.Preco = total;
 
+            encontrado.FimReserva = DateTime.Now;
             encontrado.CustoPrevisto = (decimal)total;
 
             db.Entry(encontrado).State = EntityState.Modified;

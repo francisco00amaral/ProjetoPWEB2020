@@ -40,7 +40,9 @@
 </style>
 <div class="parent-style-one">
     <p>
+        @if (User.IsInRole("Empresa")) { 
         @Html.ActionLink("Adicionar novo veiculo", "Create", new { id = 1 })
+        }
     </p>
     </div>
     <table class="table">
@@ -81,8 +83,10 @@
                     @Html.DisplayFor(modelItem => item.preco)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.idCarro }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.idCarro }) |
+                    @if (User.IsInRole("Empresa")) {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.idCarro })}
+
+                    @Html.ActionLink("Details", "Details", new { id = item.idCarro }) 
                 </td>
             </tr>
         }

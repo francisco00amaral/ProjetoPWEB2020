@@ -43,12 +43,7 @@ namespace Projeto2020.Controllers
                     reserva = db.Reservas.Find(a.idReserva);
                     reserva.isEntregue = true;
                     reserva.isRecebido = true;
-                    reserva.isConcluido = true;
-                    //Encontra o carro e da reset a flag para o deixar reservar again
-                    carro = db.Carros.Find(a.idCarro);
-                    carro.reservado = false;
 
-                    db.Entry(carro).State = EntityState.Modified;
 
                     db.Entry(reserva).State = EntityState.Modified;
                     db.SaveChanges();

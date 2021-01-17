@@ -3,7 +3,7 @@ namespace Projeto2020.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class tudo : DbMigration
+    public partial class TUDO : DbMigration
     {
         public override void Up()
         {

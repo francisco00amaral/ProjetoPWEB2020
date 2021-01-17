@@ -182,9 +182,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101170030276_tudo.cs" />
-    <Compile Include="Migrations\202101170030276_tudo.Designer.cs">
-      <DependentUpon>202101170030276_tudo.cs</DependentUpon>
+    <Compile Include="Migrations\202101171746500_TUDO.cs" />
+    <Compile Include="Migrations\202101171746500_TUDO.Designer.cs">
+      <DependentUpon>202101171746500_TUDO.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -324,8 +324,8 @@
     <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101170030276_tudo.resx">
-      <DependentUpon>202101170030276_tudo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101171746500_TUDO.resx">
+      <DependentUpon>202101171746500_TUDO.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
