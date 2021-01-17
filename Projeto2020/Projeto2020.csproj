@@ -182,9 +182,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202101141736468_tudo.cs" />
-    <Compile Include="Migrations\202101141736468_tudo.Designer.cs">
-      <DependentUpon>202101141736468_tudo.cs</DependentUpon>
+    <Compile Include="Migrations\202101170030276_tudo.cs" />
+    <Compile Include="Migrations\202101170030276_tudo.Designer.cs">
+      <DependentUpon>202101170030276_tudo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -206,10 +206,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\AMinhaDb.mdf" />
-    <Content Include="App_Data\AMinhaDb_log.ldf">
-      <DependentUpon>AMinhaDb.mdf</DependentUpon>
-    </Content>
     <Content Include="assets\img\wallhaven-295557.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -273,7 +269,6 @@
     <Content Include="Views\RolesAdmin\Index.cshtml" />
     <Content Include="Views\RolesAdmin\Edit.cshtml" />
     <Content Include="Views\RolesAdmin\Details.cshtml" />
-    <Content Include="Views\RolesAdmin\Delete.cshtml" />
     <Content Include="Views\RolesAdmin\Create.cshtml" />
     <Content Include="Views\InitAdmin\Success.cshtml" />
     <Content Include="Views\InitAdmin\Index.cshtml" />
@@ -325,11 +320,12 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202101141736468_tudo.resx">
-      <DependentUpon>202101141736468_tudo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202101170030276_tudo.resx">
+      <DependentUpon>202101170030276_tudo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

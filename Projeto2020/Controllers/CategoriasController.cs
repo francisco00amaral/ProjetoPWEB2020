@@ -10,6 +10,7 @@ using Projeto2020.Models;
 
 namespace Projeto2020.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoriasController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

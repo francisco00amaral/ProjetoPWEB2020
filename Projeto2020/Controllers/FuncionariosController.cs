@@ -11,6 +11,8 @@ using System.Web.Mvc;
 
 namespace Projeto2020.Controllers
 {
+    [Authorize(Roles = "Funcionário")]
+
     public class FuncionariosController : Controller
     {
 

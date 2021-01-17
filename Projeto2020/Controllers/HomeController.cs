@@ -13,6 +13,7 @@ namespace Projeto2020.Controllers
             return View();
         }
 
+        [Authorize(Roles = "Admin")]
         public ActionResult adminarea()
         {
             return View();

@@ -34,8 +34,6 @@
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Admin", "adminarea", "Home")</li>
-                        <li>@Html.ActionLink("Utilizadores", "Index", "UsersAdmin")</li>
-                        <li>@Html.ActionLink("Tipos de Utilizadores", "Index", "RolesAdmin")</li>
                         <li>@Html.ActionLink("Categorias", "Index", "Categorias")</li>
 
 

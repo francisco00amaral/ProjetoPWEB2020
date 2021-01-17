@@ -82,11 +82,9 @@
                 @Html.DisplayFor(modelItem => item.preco)
             </td>
             <td>
-                @if (User.IsInRole("Cliente"))
-                {
+                @if(User.IsInRole("Cliente") || !User.Identity.IsAuthenticated) {
                     @Html.ActionLink("Reservar", "Reservar", "Clientes", new { id = item.idCarro }, null)
                 }
-
             </td>
         </tr>
     }

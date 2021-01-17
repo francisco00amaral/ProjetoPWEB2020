@@ -53,12 +53,5 @@ namespace Projeto2020
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(string id)
-        {
-            var role = context.Roles.Find(id);
-            context.Roles.Remove(role);
-            context.SaveChanges();
-            return RedirectToAction("Index");
-        }
     }
 }

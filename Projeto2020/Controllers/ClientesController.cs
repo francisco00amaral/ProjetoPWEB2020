@@ -23,6 +23,10 @@ namespace Projeto2020.Controllers
         //get
         public ActionResult Reservar(int? id)
         {
+            if (!(User.Identity.IsAuthenticated))
+            {
+                return RedirectToAction("Register", "Account");
+            }
             var encontra = db.Carros.Find(id);
             if (encontra.reservado == true)
             {
